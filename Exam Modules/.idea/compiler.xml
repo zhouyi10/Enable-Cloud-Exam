@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="enable-cloudexam-manager" />
+        <module name="sdk-enable-cloud-exam" />
+        <module name="enable-cloud-exam-framework" />
+        <module name="enable-cloud-exam-micro-service" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="enable-cloud-exam-framework" target="8" />
+      <module name="enable-cloud-exam-micro-service" target="8" />
+      <module name="enable-cloudexam-manager" target="1.8" />
+      <module name="exam-modules" target="1.5" />
+      <module name="sdk-enable-cloud-exam" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="enable-cloud-exam-framework" options="-parameters" />
+      <module name="enable-cloud-exam-micro-service" options="-parameters" />
+      <module name="enable-cloudexam-manager" options="-parameters" />
+      <module name="sdk-enable-cloud-exam" options="-parameters" />
+    </option>
+  </component>
+</project>

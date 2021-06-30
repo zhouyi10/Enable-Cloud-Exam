@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" xmlns:v-on="http://www.w3.org/1999/xhtml"
+	  xmlns:v-bind="http://www.w3.org/1999/xhtml" layout:decorator="comm/layout3">
+<head>
+	<title>报告分析</title>
+	<script type="text/javascript" th:src="${_contextPath} + @{/comm/plugins/vue-2.5.21/vue.min.js(v=${_v})}"></script>
+	<script type="text/javascript" th:src="${_contextPath} + @{/custom/cloudexam/js/report/diagnosis.js}"></script>
+
+	<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+		window.i18n = {};
+		$(function (){
+			Report.userId = [[${userId}]];
+			Report.queryTestInfoListUrl = [[${_contextPath} + @{/report/testInfoList}]];
+			Report.totalUrl = [[${_contextPath} + @{/report/count}]];
+			Report.teacherBaseInfo = [[${teacherBaseInfo}]];
+			Report.init();
+		})
+		/*]]>*/
+	</script>
+
+</head>
+
+<body>
+<div class="content" id="report" layout:fragment="InfoBoxbig">
+	<div class="main">
+		<div class="mainleft">
+			<div class="tree-style">
+				<div _ngcontent-vku-c65="" class="typeAll">
+					<div _ngcontent-vku-c65="" nz-element="" class="headtitleName"><span
+							_ngcontent-vku-c65=""><b _ngcontent-vku-c65="">小学一年级语文人教2016版
+											2020-2021学年下学期</b></span><a _ngcontent-vku-c65="" nz-tooltip=""
+																		class="glyphicon glyphicon-menu-right ng-star-inserted"></a>
+						<!---->
+						<!---->
+						<!---->
+					</div>
+					<!---->
+				</div>
+				<div class="nodeBox">
+					<nz-tree nzblocknode="" nzshowline=""
+							 class="ng-tns-c71-1 ant-select-tree ant-select-tree-show-line ant-select-tree-icon-hide ant-select-tree-block-node">
+						<div role="tree" class="ng-tns-c71-1"><input class="ng-tns-c71-1"
+																	 style="width: 0px; height: 0px; display: flex; overflow: hidden; opacity: 0; border: 0px; padding: 0px; margin: 0px;">
+						</div>
+						<div class="ant-tree-list ng-tns-c71-1 ant-select-tree-list">
+							<div class="ng-tns-c71-1">
+								<!---->
+								<div
+										class="ng-tns-c71-1 ant-select-tree-list-holder-inner ng-trigger ng-trigger-treeCollapseMotion ng-star-inserted">
+									<!---->
+								</div>
+								<!---->
+							</div>
+						</div>
+						<!---->
+					</nz-tree>
+					<p class="ng-star-inserted"><img
+							th:src="${_contextPath} + @{/custom/cloudexam/img/nodata.png}" alt=""></p>
+					<!---->
+					<nz-spin nzsimple="" nztip="Loading...">
+						<!---->
+						<!---->
+						<!---->
+					</nz-spin>
+				</div>
+				<!---->
+			</div>
+		</div>
+		<div class="mainright">
+			<div class="stepNav" style="margin-top:0px">
+				<div class="stepNavTopBox">
+					<div class="stepNavTop">
+						<div class="selectClassBox"><span class="className">班级</span>
+							<nz-select nzplaceholder="全部班级"
+									   class="ng-tns-c82-0 ant-select ant-select-show-arrow ant-select-single ng-untouched ng-pristine ng-valid">
+								<nz-select-top-control cdkoverlayorigin=""
+													   class="ng-tns-c82-0 ng-tns-c81-2 ant-select-selector">
+									<nz-select-search
+											class="ant-select-selection-search ng-tns-c81-2 ng-star-inserted">
+										<input autocomplete="off"
+											   class="ant-select-selection-search-input ng-untouched ng-pristine ng-valid"
+											   readonly="readonly" style="opacity: 0;">
+										<!---->
+									</nz-select-search>
+									<!---->
+									<!---->
+									<!---->
+									<!---->
+									<!---->
+									<nz-select-placeholder
+											class="ant-select-selection-placeholder ng-tns-c81-2 ng-star-inserted">
+										全部班级
+										<!---->
+										<!---->
+									</nz-select-placeholder>
+									<!---->
+								</nz-select-top-control>
+								<!---->
+								<nz-select-arrow class="ant-select-arrow ng-tns-c82-0 ng-star-inserted"><i
+										nz-icon="" nztype="down"
+										class="anticon anticon-down ng-star-inserted"><svg
+										viewBox="64 64 896 896" focusable="false" fill="currentColor"
+										width="1em" height="1em" data-icon="down" aria-hidden="true">
+									<path
+											d="M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z">
+									</path>
+								</svg></i>
+									<!---->
+									<!---->
+									<!---->
+									<!---->
+									<!---->
+									<!---->
+									<!---->
+								</nz-select-arrow>
+								<!---->
+								<!---->
+							</nz-select>
+						</div>
+					</div>
+				</div>
+				<div class="stepList">
+					<div class="stepLiBox ng-star-inserted">
+						<div class="li_right">
+							<div class="imgBox"><img th:src="${_contextPath} + @{/custom/cloudexam/img/test.png} alt="">
+							</div>
+							<div class="detailBox">
+								<div class="title">
+									2021-06-21杂交水稻的诞生测验test005</div>
+								<div class="detailSm"><span class="ng-star-inserted">71班</span>
+									<!----><em>|</em><em>|</em>创建时间：2021-06-21 16:55:00 <em>|</em>未派发
+								</div>
+							</div>
+							<div class="contronBox">
+								<div class="buttonBox2 margin_0">查看报告</div>
+							</div>
+						</div>
+					</div>
+					<div class="stepLiBox ng-star-inserted" >
+						<div class="li_right">
+							<div class="imgBox"><img th:src="${_contextPath} + @{/custom/cloudexam/img/test.png}" alt="">
+							</div>
+							<div class="detailBox">
+								<div class="title">
+									2021-06-21杂交水稻的诞生测验test01
+								</div>
+								<div class="detailSm">
+									<span class="ng-star-inserted">71班</span>
+									<em>|</em>
+									<em>|</em>
+									<span th:text="|#{UI_76_02_05}: |">创建时间：2021-06-21 15:10:56</span>
+									<em>|</em>
+									<span th:text="|#{UI_76_02_06}|">未派发</span>
+								</div>
+							</div>
+							<div class="contronBox">
+								<div class="buttonBox2 margin_0" th:text="|#{UI_76_02_04}|">查看报告</div>
+							</div>
+						</div>
+					</div>
+					<!---->
+				</div>
+				<div class="pageBox">
+					<div class="page_box ng-star-inserted">
+						<div class="page_box_tips col-xs-12 col-sm-3 col-md-3 col-lg-3">
+							共1页/2条 </div>
+						<ul class="pageOne col-xs-12 col-sm-9 col-md-9 col-lg-9">
+							<li title="首页" id="home" class="pageItem disabled"><a><img
+									th:src="${_contextPath} + @{/custom/cloudexam/img/up1.png}"></a>
+							</li>
+							<li title="上一页" class="arrow pageItem disabled"><a><img
+									th:src="${_contextPath} + @{/custom/cloudexam/img/up2.png}"></a>
+							</li>
+							<li id="1" class="pageItem active ng-star-inserted"><a
+									class="ng-star-inserted">1</a>
+								<!---->
+								<!---->
+							</li>
+							<!---->
+							<li title="下一页" class="pageItem disabled">
+								<a><img th:src="${_contextPath} + @{/custom/cloudexam/img/up3.png}"></a>
+							</li>
+							<li title="尾页" id="tail" class="pageItem disabled"><a><img
+									th:src="${_contextPath} + @{/custom/cloudexam/img/up4.png}"></a>
+							</li>
+							<li class="lastToNum"><span> 到</span><input type="text" id="ChangeNum"><span
+									id="sureInfo" class="num">页</span>
+							</li>
+						</ul>
+					</div>
+					<!---->
+				</div>
+			</div>
+		</div>
+	</div>
+	</div>
+</body>
+
+</html>

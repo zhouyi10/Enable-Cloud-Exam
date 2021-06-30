@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enableets.edu.enable.cloud.exam.framework.dao.ExamResultInfoDAO">
+
+    <select id="getExamResultInfo" resultType="com.enableets.edu.enable.cloud.exam.framework.po.ExamResultInfoPO"
+            parameterType="map">
+	   select exam_details_id as examDetailsId,
+	          student_user_id as studentUserId,
+	          student_full_name as studentFullName,
+	          student_code as studentCode,
+	          student_no as studentNo,
+	          status as status,
+	          teacher_user_id as teacherUserId,
+	          teacher_full_name as teacherFullName,
+	          a_point as aPoint,
+	          b_point as bPoint,
+	          additional_point as additionalPoint,
+	          standard_point as standardPoint,
+	          total_point as totalPoint,
+	          level as level,
+	          comment as comment,
+	          content_id as contentId,
+	          creator as creator,
+	          create_time as createTime,
+	          updator as updator,
+	          update_time as updateTime
+	   from exam_result_info
+       where exam_details_id=#{examDetailsId}
+   </select>
+
+	<!-- 批量插入数据，如果主键重复，则更新值 -->
+	<insert id="batchInsert" parameterType="List">
+		INSERT INTO exam_result_info(exam_details_id, student_user_id, student_full_name,
+		student_code, student_no, status, teacher_user_id, teacher_full_name,
+		a_point, b_point, additional_point, standard_point,
+		total_point, level, comment, content_id,
+		creator,create_time,updator,update_time)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.examDetailsId},
+			#{item.studentUserId},
+			#{item.studentFullName},
+			#{item.studentCode},
+			#{item.studentNo},
+			#{item.status},
+			#{item.teacherUserId},
+			#{item.teacherFullName},
+			#{item.aPoint},
+			#{item.bPoint},
+			#{item.additionalPoint},
+			#{item.standardPoint},
+			#{item.totalPoint},
+			#{item.level},
+			#{item.comment},
+			#{item.contentId},
+			#{item.creator},
+			#{item.createTime},
+			#{item.updator},
+			#{item.updateTime}
+			)
+		</foreach>
+		ON DUPLICATE KEY UPDATE
+		exam_details_id = VALUES(exam_details_id),student_user_id = VALUES(student_user_id),student_full_name =
+		VALUES(student_full_name),
+		student_code = VALUES(student_code),student_no = VALUES(student_no),status = VALUES(status),teacher_user_id =
+		VALUES(teacher_user_id),
+		teacher_full_name = VALUES(teacher_full_name), a_point = VALUES(a_point), b_point = VALUES(b_point),
+		additional_point = VALUES(additional_point), standard_point = VALUES(standard_point), total_point =
+		VALUES(total_point),
+		level = VALUES(level), comment = VALUES(comment), content_id = VALUES(content_id),
+		updator = VALUES(updator), update_time = VALUES(update_time)
+	</insert>
+
+</mapper>

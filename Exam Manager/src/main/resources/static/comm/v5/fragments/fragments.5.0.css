@@ -1,0 +1,481 @@
+html,
+body,
+.header div,
+.header span,
+.header applet,
+.header object,
+.header iframe,
+.header h1,
+.header h2,
+.header h3,
+.header h4,
+.header h5,
+.header h6,
+.header p,
+.header blockquote,
+.header pre,
+.header a,
+.header abbr,
+.header acronym,
+.header address,
+.header big,
+.header cite,
+.header code,
+.header del,
+.header dfn,
+.header em,
+.header font,
+.header img,
+.header ins,
+.header kbd,
+.header q,
+.header s,
+.header samp,
+.header small,
+.header strike,
+.header strong,
+.header sub,
+.header sup,
+.header tt,
+.header var,
+.header dd,
+.header dl,
+.header dt,
+.header li,
+.header ol,
+.header ul,
+.header fieldset,
+.header form,
+.header label,
+.header legend {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+}
+.header img {
+  border: none;
+}
+.header p {
+  margin-bottom: 0;
+}
+
+.ContainerWarp {
+  background-color: #e6e9ee;
+}
+
+.ContainerWarp .header {
+  background-color: #ffffff;
+}
+body,
+.header a,
+.header input,
+.header select,
+.header button {
+  font-family: "Microsoft Yahei", "Droid Sans Fallback", "Arial", "Helvetica", "sans-serif", "宋体";
+  font-size: 14px;
+  outline: none;
+  color: #666;
+  text-decoration: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);/*去除获取焦点时半透明背景*/
+}
+.header ul,
+.header ol {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+.header a {
+  color: #ffffff;
+  text-decoration: none;
+}
+.header a:hover {
+  text-decoration: none;
+}
+.header table {
+  text-align: center;
+  vertical-align: middle;
+}
+.header th {
+  text-align: center;
+  vertical-align: middle;
+}
+.header .text_no_select {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  user-select: none;
+}
+.header .box-shadow-round {
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.header .self_flex_content { /*定义父元素*/
+  display: box;/*（伸缩盒最老版本）*/
+  display: -webkit-box;/* iOS 6-, Safari 3.1-6 */
+  display: -webkit-flex;/* Chrome */
+  display: -moz-box;/* Firefox 19 */
+  display: -ms-flexbox;
+  display: flex;/*flex容器*/
+  -webkit-flex-direction: row;
+  -moz-flex-direction: row;
+  -ms-flex-direction: row;
+  -o-flex-direction: row;
+  flex-direction: row;
+  -webkit-justify-content: center;
+  -moz-justify-content: center;
+  -ms-justify-content: center;
+  -o-justify-content: center;
+  justify-content: center;
+}
+/*去掉input默认上下箭头*/
+.header .input_jiantou_hide input::-webkit-outer-spin-button,
+.header .input_jiantou_hide input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+.header .input_jiantou_hide input[type="number"] {
+  -moz-appearance: textfield;
+}
+.header .input_jiantou_hide input {
+  -webkit-appearance: none;
+  /*去除input默认样式*/ }
+.header .input_jiantou_hide input[type="submit"],
+.header .input_jiantou_hide input[type="reset"],
+.header .input_jiantou_hide input[type="button"],
+.header .input_jiantou_hide input {
+  -webkit-appearance: none;
+}
+.header .input_jiantou_hide input::-ms-clear {
+  display: none;
+}
+.header .select_jiantou_hide {
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  -ms-appearance: none;
+}
+.header .select_jiantou_hide::-ms-expand {
+  display: none;
+}
+.header .AnimationRotate360 {
+  -webkit-animation: Rotating 1s linear infinite;
+  -moz-animation: Rotating 1s linear infinite;
+  -ms-animation: Rotating 1s linear infinite;
+  animation: Rotating 1s linear infinite;
+}
+@keyframes Rotating {
+  from {
+    -webkit-transform: rotateZ(0deg);
+    -moz-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    transform: rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+@-webkit-keyframes Rotating {
+  from {
+    -webkit-transform: rotateZ(0deg);
+    -moz-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    transform: rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+@-moz-keyframes Rotating {
+  from {
+    -webkit-transform: rotateZ(0deg);
+    -moz-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    transform: rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+@-o-keyframes Rotating {
+  from {
+    -webkit-transform: rotateZ(0deg);
+    -moz-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    transform: rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+@-ms-keyframes Rotating {
+  from {
+    -webkit-transform: rotateZ(0deg);
+    -moz-transform: rotateZ(0deg);
+    -ms-transform: rotateZ(0deg);
+    transform: rotateZ(0deg);
+  }
+  to {
+    -webkit-transform: rotateZ(360deg);
+    -moz-transform: rotateZ(360deg);
+    -ms-transform: rotateZ(360deg);
+    transform: rotateZ(360deg);
+  }
+}
+.header .small_hand {
+  cursor: pointer;
+}
+/*超出隐藏另外加宽*/
+.header .hideellipsis,
+.header .widthHide2 {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -o-text-overflow: ellipsis;
+  white-space: nowrap;
+}
+/*伪类清除浮动*/
+.header .clearfix:after {
+  content: "";/*设置内容为空*/
+  　　height: 0;/*高度为0*/
+  　　line-height: 0;/*行高为0*/
+  　　display: block;/*将文本转为块级元素*/
+  　　visibility: hidden;/*将元素隐藏*/
+  　　clear: both;/*清除浮动*/
+}
+.header .clearfix {
+  zoom: 1;
+  /*为了兼容IE*/ }
+.header .NoSelect {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.header .bg_blue {
+  background: #1274c9;
+}
+.header .Rotate_180 {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  display: inline-block;
+}
+.main {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.header .main {/* 部分样式影响消除*/
+  max-width: 1200px;
+  margin: 0 auto;
+}
+.main .header {
+  width: 100%;
+}
+.main .header .header_tp {
+  width: 100%;
+  height: 53px;
+}
+.main .header .header_tp > .logoImg {
+  height: 37px;
+  float: left;
+  margin: 8px 0 0 30px;
+  cursor: pointer;
+}
+.main .header .header_tp > .header_tp_rt {
+  width: auto;
+  height: 53px;
+  display: inline-block;
+  float: right;
+  position: relative;
+}
+.main .header .header_tp > .header_tp_rt > .headUser {
+  cursor: pointer;
+  color: #646464;
+  float: right;
+  width: auto;
+  height: 53px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 10px 15px 10px 0;
+}
+.main .header .header_tp > .header_tp_rt > .headUser > .userImg {
+  width: 36px;
+  height: 36px;
+  float: left;
+  margin: 2px 10px 0 2px;
+}
+.main .header .header_tp > .header_tp_rt > .headUser > .userName {
+  float: left;
+  font-size: 14px;
+  display: inline-block;
+  line-height: 40px;
+  height: 40px;
+  margin-right: 10px;
+}
+.main .header .header_tp > .header_tp_rt > .handLists {
+  display: none;
+  position: absolute;
+  z-index: 50;
+  top: 60px;
+  right: 50px;
+  background: white;
+  font-size: 14px;
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  width: 100px;
+}
+.main .header .header_tp > .header_tp_rt > .handLists:after {
+  content: '';
+  border-bottom: 8px solid white;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  position: absolute;
+  top: -8px;
+  right: 55%;
+}
+.main .header .header_tp > .header_tp_rt > .handLists > li {
+  padding: 5px 12px;
+  /*  width: 70px;*/
+}
+.main .header .header_tp > .header_tp_rt > .handLists > li > a {
+  color: #999;
+  font-size: 14px;    white-space: nowrap;
+}
+.main .header .header_tp > .header_tp_rt:hover .handLists {
+  display: block;
+}
+
+.header .small-navigated {
+  margin-left:30px;
+  background: #1A5FCB;
+  width: 100%;
+  height: 55px;
+  line-height: 40px;
+  padding: 0px 0px;
+  /*overflow: hidden;*/
+  font-size: 14px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  position: relative;
+  color: #666;
+  /* border-bottom: 1px solid #e1e1e1; */
+  z-index: 0;
+}
+
+.small-navigated::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 55px;
+  background-color: #1A5FCB;
+  left: -800px;
+  z-index: -1;
+}
+
+.small-navigated::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 55px;
+  background-color: #1A5FCB;
+  right: -800px;
+  z-index: -1;
+}
+
+
+
+.header .small-navigated .a_list {
+    display: inline-block;
+    font-size: 16px;
+    height: 55px;
+    line-height: 55px;
+    float: left;
+    padding: 0 15px;
+}
+.header .small-navigated .a_list:hover {
+  background: #032DA4;
+}
+
+.header .small-navigated .a_list_active {
+  background: #032DA4;
+}
+
+.header .small-navigated .small_nav .active {
+    color: #173b58;
+}
+/*# sourceMappingURL=mainNavigation.css.map */
+.main .header .header_tp > .header_tp_rt > .headUser > .nav_status{
+  margin-top: 12px;
+
+}
+.main .header .header_tp > .header_tp_rt > .headUser:hover .nav_status {
+  transform: rotate(180deg);
+  -webkit-transform: rotate(180deg);
+  -moz-transform: rotate(180deg);
+  -o-transform: rotate(180deg);
+  filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3);
+  display: inline-block;
+}
+
+
+.menu-ul {
+    float: left;
+    margin:15px !important;
+}
+
+.menu-ul li {
+    float: left;
+    margin-left: 18px;
+    font-size: 18px;
+    cursor:pointer;
+}
+
+.menu-ul li a {
+    color: #747474;
+    font-size: 18px;
+  	cursor: pointer;
+}
+
+.menu-ul li a:hover {
+    color: #2781e7;
+}
+
+
+.menu-ul li a.on {
+    color: #2781e7;
+    padding-bottom: 8px;
+}
+
+.header .tab-list {
+  display: inline-block;
+  font-size: 16px;
+  margin-left: 118px;
+  line-height: 50px;
+}
+.header .tab-list .tab {
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 33.5px;
+}
+.header .tab-list .tab.active,
+.header .tab-list .tab:hover {
+  color: #096dd9;
+}

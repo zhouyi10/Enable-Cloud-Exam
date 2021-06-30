@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enableets.edu.enable.cloud.exam.framework.dao.ExamDictionaryDAO">
+
+  <select id="query" parameterType="Map" resultType="com.enableets.edu.enable.cloud.exam.framework.po.ExamDictionaryPO">
+      select
+        school_id as schoolId,
+        `type` as type,
+        code as code,
+        `name` as name,
+        description as description,
+        status,
+        sequence_number as sequenceNumber,
+        parent_code as parentCode,
+        creator as creator,
+        create_time as createTime,
+        updator as updator,
+        update_time as updateTime
+      from exam_dictionary
+      where status = '1'
+        <if test="schoolId != null and schoolId != ''">
+          and school_id = #{schoolId}
+        </if>
+        <if test="type != null and type != ''">
+          and `type` = #{type}
+        </if>
+        <if test="code != null and code != ''">
+          and code = #{code}
+        </if>
+  </select>
+</mapper>

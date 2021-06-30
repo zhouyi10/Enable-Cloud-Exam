@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://www.ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.enableets.edu.enable.cloud.exam.framework.dao.ExamDetailsStepTaskInfoDAO">
+    <insert id="batchInsert" parameterType="List">
+        insert into exam_details_step_task_info(
+        exam_details_id ,
+        activity_id ,
+        content_info ,
+        publish_now ,
+        publish_time ,
+        status,
+        download_in_advance_minutes ,
+        minutes_of_exam ,
+        answer_start_time ,
+        answer_end_time ,
+        minutes_after_the_start_to_hand_in ,
+        hand_in_end_time ,
+        mark_start_time ,
+        mark_end_time ,
+        creator ,
+        create_time ,
+        updator,
+        update_time
+
+        )values
+        <foreach collection="list" item="item" index="index" separator=",">
+            (
+            #{item.examDetailsId},
+            #{item.activityId},
+            #{item.contentInfo},
+            #{item.publishNow},
+            #{item.publishTime},
+            #{item.status},
+            #{item.downloadInAdvanceMinutes},
+            #{item.minutesOfExam},
+            #{item.answerStartTime},
+            #{item.answerEndTime},
+            #{item.minutesAfterTheStartToHandIn},
+            #{item.handInEndTime},
+            #{item.markStartTime},
+            #{item.markEndTime},
+            #{item.creator},
+            #{item.createTime},
+            #{item.updator},
+            #{item.updateTime}
+
+            )
+        </foreach>
+        ON DUPLICATE KEY UPDATE
+        exam_details_id = VALUES(exam_details_id),
+        activity_id = VALUES(activity_id),
+        content_info = VALUES(content_info),
+        publish_now = VALUES(publish_now),
+        publish_time = VALUES(publish_time),
+        status = VALUES(status),
+        download_in_advance_minutes = VALUES(download_in_advance_minutes),
+        minutes_of_exam = VALUES(minutes_of_exam),
+        answer_start_time = VALUES(answer_start_time),
+        answer_end_time = VALUES(answer_end_time),
+        minutes_after_the_start_to_hand_in = VALUES(minutes_after_the_start_to_hand_in),
+        hand_in_end_time = VALUES(hand_in_end_time),
+        mark_start_time = VALUES(mark_start_time),
+        mark_end_time = VALUES(mark_end_time),
+        creator = VALUES(creator),
+        create_time = VALUES(create_time),
+        updator = VALUES(updator),
+        update_time = VALUES(update_time)
+
+
+    </insert>
+</mapper>

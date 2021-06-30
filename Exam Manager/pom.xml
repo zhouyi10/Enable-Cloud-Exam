@@ -1,0 +1,113 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.enableets.edu.enable.cloud.exam</groupId>
+    <artifactId>enable-cloudexam-manager</artifactId>
+    <version>1.0.0.RELEASE</version>
+    <name>Enable Cloud Exam Manger</name>
+
+    <parent>
+        <groupId>com.enableets.edu.framework</groupId>
+        <artifactId>enableets-manager-extension-parent</artifactId>
+        <version>1.0.3.RELEASE</version>
+        <relativePath></relativePath>
+    </parent>
+
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <java.version>1.8</java.version>
+        <jsoup.version>1.11.3</jsoup.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>${jsoup.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.enableets.edu.module</groupId>
+            <artifactId>enableets-module-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.enableets.edu.sdk</groupId>
+            <artifactId>sdk-content</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.enableets.edu.sdk</groupId>
+            <artifactId>sdk-account-v2</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.enableets.edu.sdk</groupId>
+            <artifactId>sdk-school3-v2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.enableets.edu.sdk</groupId>
+            <artifactId>sdk-steptask</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.enableets.edu.sdk</groupId>
+            <artifactId>sdk-activity-v2</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.enableets.edu.sdk</groupId>
+            <artifactId>sdk-package</artifactId>
+            <version>1.0.1.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.enableets.edu.ueditor</groupId>
+            <artifactId>ueditor-service</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.enableets.edu.sdk</groupId>
+            <artifactId>sdk-group</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+        </dependency>
+        <!-- acm sdk -->
+        <dependency>
+            <groupId>com.enableets.edu.sdk</groupId>
+            <artifactId>acm-menu-provider</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.enableets.edu.sdk</groupId>
+            <artifactId>sdk-assessment</artifactId>
+            <version>1.0.0.RELEASE</version>
+        </dependency>
+        <dependency>
+            <groupId>com.enableets.edu.sdk</groupId>
+            <artifactId>sdk-paper</artifactId>
+        </dependency>
+    </dependencies>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>pl.project13.maven</groupId>
+                <artifactId>git-commit-id-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+</project>

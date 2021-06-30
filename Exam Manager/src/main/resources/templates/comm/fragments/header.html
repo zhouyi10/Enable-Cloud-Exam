@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="header" id="header" th:fragment="header">
+	<link rel="stylesheet" type="text/css" th:href="${_contextPath} + @{/comm/v5/fragments/fragments.5.0.css(v=${_v})}"/>
+	<link rel="stylesheet" type="text/css" th:href="${_contextPath} + @{/comm/v5/css/header.css(v=${_v})}"/>
+	<link rel="stylesheet" type="text/css" th:href="${_contextPath} + @{/comm/v5/css/content.css(v=${_v})}"/>
+	<script th:src="${_contextPath} + @{'/comm/v5/fragments/fragments.5.0.js'(v=${_v})}"></script>
+
+	<script type="text/javascript" th:src="${_contextPath} + @{/comm/js/BaseUtils.js(v=${_v})}"></script>
+	<div class="main">
+		<dl class="header">
+			<div class="header_tp">
+				<img class="logoImg" th:src="${schoolLogo} ? ${schoolLogo} : ${_contextPath} + @{/comm/v5/img/logoV5.png(v=${_v})}"/>
+				<div class="tab-list" id="topMenu"></div>
+				<div class="header_tp_rt">
+					<th:block th:if="${#authentication.principal =='anonymousUser'}">
+						<!-- <a  class="headUser" th:href="${_contextPath} + @{/public/login}" style="color: #428bca" th:text="登录"></a> -->
+						<!--<a  class="headUser" th:href="${_contextPath} + @{/public/login}" style="color: #428bca" th:text=" "></a>-->
+						<iframe hidden="hidden" id="test_login" th:src="${_contextPath} + @{/login/testlogin}"></iframe>
+					</th:block>
+					<th:block th:if="${#authentication.principal !='anonymousUser'}">
+						<!--<a class="headUser">
+							<img class="userImg" th:src="${#authentication.userAuthentication.details.photoUrl} != null and ${#authentication.userAuthentication.details.photoUrl} != '' ? ${#authentication.userAuthentication.details.photoUrl} : ${_contextPath} + @{/comm/img/userV5.png}"/>
+							<span class="userName" th:title="${#authentication.userAuthentication.details.name}" th:text="${#authentication.userAuthentication.details.name}">慕容欣欣</span>
+						</a>-->
+						<ul class="head_user">
+							<li class="dropdown goout open">
+								<a>
+									<img class="user_img" th:src="${#authentication.userAuthentication.details.photoUrl} != null and ${#authentication.userAuthentication.details.photoUrl} != '' ? ${#authentication.userAuthentication.details.photoUrl} : ${_contextPath} + @{/comm/v5/img/userV5.png}"/>
+									<span class="user_name" th:title="${#authentication.userAuthentication.details.name}" th:text="${#authentication.userAuthentication.details.name}">语文老师</span>
+									<span class="identity_name">老师</span>
+								</a>
+							</li>
+						</ul>
+						<ul _ngcontent-cdo-c28="" class="dropdown-menu" style="display: none">
+						</ul>
+					</th:block>
+				</div>
+			</div>
+			<div class="small-navigated" id="navigation"></div>
+            <div class="breadcrumbs">
+                <div class="container">
+                    <div class="breadBox breadcrumbs_tags">
+                    </div>
+                </div>
+            </div>
+		</dl>
+	</div>
+	<script th:src="${_contextPath} + @{/comm/plugins/jQuery/jquery.cookie.js(v=${_v})}"></script>
+	<script type="text/javascript" th:inline="javascript">
+		//<![CDATA[
+		header.menuJson = [[${menuJson}]]; //数组
+		header.menuJsonHeader = [[${menuJsonHeader}]]; //数组
+		header.menuBreadcrumbUrl = [[${_contextPath} + @{/comm/v5/img/locity.png(v=${_v})}]];
+		header.buildBreadcrumbs = function (type) {
+			menuTopKey = sessionStorage.getItem('_menu_50_top_key_');
+			menuChildKey = sessionStorage.getItem('_menu_50_child_key_');
+			var menuTop = header.menuMap[menuTopKey];
+			var menuChild = header.menuMap[menuChildKey];
+			let breadcrumbsTemplate = "";
+			if (type == "child") {
+				$(".breadcrumbs .breadcrumbs_tags .menu_child").remove();
+			} else {
+				$(".breadcrumbs .breadcrumbs_tags").empty();
+				breadcrumbsTemplate = "<div><img src='" + header.menuBreadcrumbUrl + "'</img></div>" +
+						"<div class='breadcrumbs_tag between ng-star-inserted'>三三云学堂</div><span class='glyphicon glyphicon-menu-right menu_child'></span><div class='breadcrumbs_tag between ng-star-inserted'>教育教学</div>";
+				breadcrumbsTemplate += "<span class='glyphicon glyphicon-menu-right'></span>" +
+						"<div class='breadcrumbs_tag between ng-star-inserted'>" + menuTop.name + "</div>";
+			}
+			breadcrumbsTemplate += "<span class='glyphicon glyphicon-menu-right menu_child'></span>" +
+					"<div class='breadcrumbs_tag between ng-star-inserted menu_child'>" + menuChild.name + "</div>";
+			$(".breadcrumbs .breadcrumbs_tags").append(breadcrumbsTemplate);
+		};
+		header.init();
+		header.identitys = [[${identitys}]];
+		if (header.identitys.indexOf("_SCHOOL_ADMIN")) {
+			$(".header .header_tp_rt .head_user .identity_name").text("学校管理员");
+		} else if (header.identitys.indexOf("_SCHOOL_ADMIN")) {
+			$(".header .header_tp_rt .head_user .identity_name").text("老师");
+		} else if (header.identitys.indexOf("_STUDENT")) {
+			$(".header .header_tp_rt .head_user .identity_name").text("学生");
+		} else if (header.identitys.indexOf("_PARENT")) {
+			$(".header .header_tp_rt .head_user .identity_name").text("家长");
+		}
+		var headerMenu = [[${userMenus}]]; //数组
+		if (headerMenu != null && headerMenu.length > 0) {
+			for (var i = 0;i < headerMenu.length;i++) {
+				var menu = headerMenu[i];
+				if (menu.url != null && menu.url.indexOf('/logout')> 0) {
+					$(".header .header_tp_rt .dropdown-menu").append('<li><a href="javascript:;" onclick="BaseUtils.submitForm(document.logoutForm)">'+ menu.name + '</a></li>');
+				} else {
+					$(".header .header_tp_rt .dropdown-menu").append('<li><a href="' + menu.url + '">'+ menu.name + '</a></li>');
+				}
+			}
+		}
+		$(function () {
+			let dropdownMenu = $(".header .header_tp_rt .dropdown-menu");
+			let headUser = $(".header .header_tp_rt .head_user");
+			headUser.click(function () {
+				event.stopPropagation();
+				if (dropdownMenu.css("display") == "none") {
+					dropdownMenu.show();
+				} else {
+					dropdownMenu.hide();
+				}
+			});
+			$(document).click(function () {
+				dropdownMenu.hide();
+			});
+		})
+		//]]>
+	</script>
+</div>
+</body>
+</html>

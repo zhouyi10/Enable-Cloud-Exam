@@ -1,0 +1,24 @@
+.tab-list[_ngcontent-mgw-c107] {
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 100px;
+    line-height: 50px;
+}
+
+.tab-list[_ngcontent-mgw-c107] .tab.active[_ngcontent-mgw-c107], .tab-list[_ngcontent-mgw-c107] .tab[_ngcontent-mgw-c107]:hover {
+    color: #096dd9!important;
+}
+
+.tab-list[_ngcontent-mgw-c107] .tab[_ngcontent-mgw-c107] {
+    display: inline-block;
+    margin-right: 30px;
+    text-decoration: none;
+    background-color: initial;
+    outline: 0;
+    cursor: pointer;
+    transition: color .3s;
+}
+
+.navFix .nav.nav-tabs {
+    margin-bottom: 0px;
+}

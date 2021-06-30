@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div id="footer" class="footer" th:fragment="footer">
+		<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+            footer._logoSrc = [[${_contextPath} + @{/comm/img/xclogo.png}]],
+			footer.init();
+		/*]]>*/
+		</script>
+	</div>
+</body>
+</html>

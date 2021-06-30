@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="htmlhead">
+	<meta charset="UTF-8"></meta>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+	<meta content="yes" name="apple-mobile-web-app-capable"></meta>
+	<meta content="black" name="apple-mobile-web-app-status-bar-style"></meta>
+	<meta content="telephone=yes" name="format-detection"></meta>
+	<meta content="email=yes" name="format-detection"></meta>
+	<link rel="stylesheet" th:href="${_contextPath} + @{/comm/plugins/bootstrap/bootstrap.min.css(v=${_v})}" />
+	<link th:href="${_contextPath} + @{/comm/plugins/Font-Awesome-3.2.1/css/font-awesome.min.css(v=${_v})}" rel="stylesheet" />
+	<script type="text/javascript" th:src="${_contextPath} + @{/comm/plugins/jQuery/jquery-3.0.0.min.js(v=${_v})}"></script>
+	<script type="text/javascript" th:src="${_contextPath} + @{/comm/plugins/jQuery/jquery.cookie.js(v=${_v})}"></script>
+	<script type="text/javascript" th:src="${_contextPath} + @{/comm/plugins/bootstrap/bootstrap.min.js(v=${_v})}"></script>
+	<script type="text/javascript" th:src="${_contextPath} + @{/comm/js/BaseUtils.js(v=${_v})}"></script>
+	<script type="text/javascript" th:src="${_contextPath} + @{/comm/plugins/layer/layer.js(v=${_v})}"></script>
+	<script type="text/javascript" th:src="${_contextPath} + @{/comm/plugins/paging/page.js(v=${_v})}"></script>
+	<script type="text/javascript" th:src="${_contextPath} + @{|/comm/plugins/paging/lang/${_locale}.js|(v=${_v})}"></script>
+	<script type="text/javascript" th:src="${_contextPath} + @{/comm/plugins/js/CommUtils.js(v=${_v})}"></script>
+	<script type="text/javascript" th:src="${_contextPath} + @{/comm/plugins/js/Constants.js(v=${_v})}"></script>
+	<script th:inline="javascript" th:src="${_contextPath} + @{/comm/plugins/js/head.js(v=${_v})}"></script>
+	<style type="text/css">
+
+	</style>
+	<script type="text/javascript">
+		/*<![CDATA[*/
+
+		/*]]>*/
+	</script>
+	<script type="text/javascript" th:inline="javascript">
+		/*<![CDATA[*/
+		$(document).ready(function(){
+			//退出系统
+			$(".user_outBtn").click(function(){
+				// document.logoutForm.submit();
+				BaseUtils.submitForm(document.logoutForm);
+			});
+			$(".syetemCloseImg").click(function () {
+				// document.logoutForm.submit();
+				BaseUtils.submitForm(document.logoutForm);
+			});
+		});
+
+		$(function(){
+			var user= [[${#authentication.principal}]];
+			if(user == 'anonymousUser'){
+				$(".ContainerWarp .ConMain .MainAuto .MainBox .AsideMenu.on").hide();
+				$(".ContainerWarp .ConMain .MainAuto .MainBox .AsideMenu.on+.MainContent").css({"paddingLeft":"0px"});
+			}
+		});
+
+		/*]]>*/
+	</script>
+
+</head>
+
+<body>
+<div class="ContainerWarp">
+	<!--头部 -->
+	<div th:replace="comm/fragments/header :: header">header</div>
+	<!--主体模块-->
+	<div layout:fragment="content" id="content" ></div>
+	<!--页脚 -->
+	<div th:replace="comm/fragments/footer :: footer">footer</div>
+</div>
+<form th:action="${_contextPath} + @{/logout}" method="post" name="logoutForm" id="logoutForm"></form>
+<script type="text/javascript" th:inline="javascript">
+	/*<![CDATA[*/
+	function selectFirstTitle(className) {
+		$(".menu-ul li a").removeClass("on");
+		$(className).addClass("on");
+		selectSecondTitle(className+"-title");
+	}
+
+	function selectSecondTitle(className) {
+		$(".paper-assembly-title").hide();
+		$(".mark-paper-task-title").hide();
+		$(".evaluation-report-title").hide();
+		$(className).show();
+	}
+
+	function selectMarkPaperStyle(id){
+		var url = window.location.pathname;
+		if (url.indexOf("/portal/mark/list") != -1){
+			$(".mark-paper-task-title li a").removeAttr("href");
+		}
+		$(".mark-paper-task-title li a").removeClass("active_");
+		$("#" + id).addClass("active_");
+		$.cookie('mark_paper_type', id,{path:"/"});
+		if (id == "assign-me") {
+			$(".search_r ul li:last").click()
+		}else{
+			$(".search_r ul li:first").click()
+		}
+	}
+
+</script>
+</html>

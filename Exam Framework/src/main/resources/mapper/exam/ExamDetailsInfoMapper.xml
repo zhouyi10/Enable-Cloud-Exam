@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enableets.edu.enable.cloud.exam.framework.dao.ExamDetailsInfoDAO">
+    <select id="queryDetailsByExamId" resultType="com.enableets.edu.enable.cloud.exam.framework.po.ExamDetailsInfoPO">
+		select
+			exam_details_id as examDetailsId,
+			exam_id as examId,
+			grade_code as gradeCode,
+			grade_name as gradeName,
+		  	class_id as classId,
+		  	class_name as className,
+		  	course_id AS courseId,
+			course_name AS courseName,
+			subject_code as subjectCode,
+			subject_name as subjectName,
+			plan_student_number as planStudentNumber,
+			actual_student_number as actualStudentNumber,
+			total_score as totalScore,
+			creator as creator,
+			create_time as createTime,
+			updator as updator,
+			update_time as updateTime
+		from
+			exam_details_info
+		where exam_id=#{examId}
+		group by class_id ,course_id
+		ORDER BY grade_code ASC, class_id ASC, course_id ASC
+	</select>
+
+	<select id="queryExamDetailsInfoV2" parameterType="java.util.HashMap"
+			resultMap="queryExamDetailsInfoMap">
+		SELECT
+		a.exam_details_id AS examDetailsId,
+		a.exam_id AS examId,
+		a.class_id AS classId,
+		a.class_name AS className,
+		a.subject_code AS subjectCode,
+		a.subject_name AS subjectName,
+		a.course_id AS courseId,
+		a.course_name AS courseName,
+		a.total_score AS totalScore,
+		a.exam_time AS examTime,
+		a.update_time AS updateTime,
+		a.create_time AS createTime,
+		b.type AS type,
+		b.school_id AS schoolId,
+		b.school_code AS schoolCode,
+		b.school_year AS schoolYear,
+		b.grade_code AS gradeCode,
+		b.grade_name AS gradeName,
+		b.name AS name,
+		b.publish_status AS publishStatus,
+		b.term_id AS termId,
+		b.term_name AS termName,
+		b.creator AS creator,
+		b.create_time AS createTime,
+		b.updator AS updator,
+		b.update_time AS updateTime,
+		c.exam_details_id AS examDetailsId,
+		c.activity_id AS activityId,
+		c.answer_start_time AS answerStartTime,
+		c.answer_end_time AS answerEndTime,
+		c.content_info AS contentInfo,
+		c.create_time AS createTime,
+		c.update_time AS updateTime,
+		d.name AS typeName
+		FROM
+		exam_details_info a
+		join exam_info b on a.exam_id = b.exam_id
+		LEFT JOIN exam_details_step_task_info c on a.exam_details_id = c.exam_details_id
+		LEFT JOIN exam_dictionary d on b.type = d.`code`
+		<where>
+			<if test="schoolId != null and schoolId !=''">
+				and b.school_id = #{schoolId}
+			</if>
+			<if test="termId != null and termId !=''">
+				and b.term_id = #{termId}
+			</if>
+			<if test="classId != null and classId !=''">
+				and a.class_id = #{classId}
+			</if>
+			<if test="subjectCode != null and subjectCode !=''">
+				and a.subject_code = #{subjectCode}
+			</if>
+			<if test="classIdList != null and classIdList.size > 0">
+				and a.class_id in (
+				<foreach collection="classIdList" item="item" separator=","> #{item} </foreach>
+				)
+			</if>
+			<if test="subjectCodeList != null and subjectCodeList.size > 0">
+				and a.subject_code in (
+				<foreach collection="subjectCodeList" item="item" separator=","> #{item} </foreach>
+				)
+			</if>
+			<if test="courseId != null and courseId !=''">
+				and a.course_id = #{courseId}
+			</if>
+			<if test="name != null and name !=''">
+				and b.name like "%"#{name}"%"
+			</if>
+		</where>
+		and c.activity_id IS NOT NULL
+		ORDER BY b.create_time DESC
+		<if test="rows != null and rows != 0 ">
+			limit #{offset},#{rows}
+		</if>
+	</select>
+
+	<resultMap id="queryExamDetailsInfoMap" type="com.enableets.edu.enable.cloud.exam.framework.po.ExamStatisticsInfoPO">
+		<id property="examDetailsId" column="examDetailsId"></id>
+		<result property="examId" column="examId"></result>
+		<result property="gradeCode" column="gradeCode"></result>
+		<result property="gradeName" column="gradeName"></result>
+		<result property="classId" column="classId"></result>
+		<result property="className" column="className"></result>
+		<result property="subjectCode" column="subjectCode"></result>
+		<result property="subjectName" column="subjectName"></result>
+		<result property="courseId" column="courseId"></result>
+		<result property="courseName" column="courseName"></result>
+		<result property="totalScore" column="totalScore"></result>
+		<result property="createTime" column="createTime"></result>
+		<result property="updateTime" column="updateTime"></result>
+		<result property="name" column="name"></result>
+		<result property="publishStatus" column="publishStatus"></result>
+		<result property="schoolId" column="schoolId"></result>
+		<result property="termId" column="termId"></result>
+		<result property="termName" column="termName"></result>
+		<result property="typeName" column="typeName"></result>
+		<result property="type" column="type"></result>
+		<association property="stepTaskInfo" javaType="com.enableets.edu.enable.cloud.exam.framework.po.ExamDetailsStepTaskInfoPO">
+			<id property="examDetailsId" column="examDetailsId"></id>
+			<id property="activityId" column="activityId"></id>
+			<result property="answerStartTime" column="answerStartTime"></result>
+			<result property="answerEndTime" column="answerEndTime"></result>
+			<result property="contentInfo" column="contentInfo"></result>
+			<result property="createTime" column="createTime"></result>
+			<result property="updateTime" column="updateTime"></result>
+		</association>
+	</resultMap>
+
+	<select id="countV2" parameterType="map" resultType="int">
+		SELECT count(DISTINCT a.exam_details_id)
+		FROM `exam_details_info` a
+		join exam_info b on a.exam_id = b.exam_id
+		LEFT JOIN exam_details_step_task_info c on a.exam_details_id = c.exam_details_id
+		<where>
+			<if test="schoolId != null and schoolId !=''">
+				and b.school_id = #{schoolId}
+			</if>
+			<if test="termId != null and termId !=''">
+				and b.term_id = #{termId}
+			</if>
+			<if test="classId != null and classId !=''">
+				and a.class_id = #{classId}
+			</if>
+			<if test="subjectCode != null and subjectCode !=''">
+				and a.subject_code = #{subjectCode}
+			</if>
+			<if test="classIdList != null and classIdList.size > 0">
+				and a.class_id in (
+				<foreach collection="classIdList" item="item" separator=","> #{item} </foreach>
+				)
+			</if>
+			<if test="subjectCodeList != null and subjectCodeList.size > 0">
+				and a.subject_code in (
+				<foreach collection="subjectCodeList" item="item" separator=","> #{item} </foreach>
+				)
+			</if>
+			<if test="courseId != null and courseId !=''">
+				and a.course_id = #{courseId}
+			</if>
+			<if test="name != null and name !=''">
+				and b.name like "%"#{name}"%"
+			</if>
+		</where>
+		and c.activity_id IS NOT NULL
+		ORDER BY b.create_time DESC
+	</select>
+
+	<select id="queryExamDetails" resultType="com.enableets.edu.enable.cloud.exam.framework.po.ExamDetailsInfoPO"
+			parameterType="map">
+		SELECT
+		sedi.exam_details_id AS examDetailsId,
+		sedi.exam_id AS examId,
+		sedi.grade_code AS gradeCode,
+		sedi.grade_name AS gradeName,
+		sedi.course_id AS courseId,
+		sedi.course_name AS courseName,
+		sedi.class_id as classId,
+		sedi.class_name as className,
+		sedi.subject_code AS subjectCode,
+		sedi.subject_name AS subjectName,
+		sedi.exam_time as examTime,
+		sedi.plan_student_number AS planStudentNumber,
+		sedi.actual_student_number AS actualStudentNumber,
+		group_concat(DISTINCT sepis.full_name) as teacherFullName,
+		sedi.creator AS creator,
+		sedi.create_time AS createTime,
+		sedi.updator AS updator,
+		sedi.update_time AS updateTime,
+		sei.`name` as name,
+		sei.school_id as schoolId,
+		ed.name as type,
+		sei.type as examTypeCode,
+		sei.term_id as termId,
+		sei.term_name as termName,
+		count(distinct seri.student_user_id) as count,
+		sedi.total_score as totalScore
+		FROM
+		exam_details_info sedi
+		JOIN exam_info sei ON sedi.exam_id = sei.exam_id
+		join exam_dictionary ed on ed.`code` = sei.type and ed.type = 'exam_type'
+		LEFT JOIN exam_point_input_setting sepis on sepis.exam_details_id = sedi.exam_details_id
+		left join exam_result_info seri on seri.exam_details_id= sedi.exam_details_id
+		<if test="notLevel !=null and notLevel !=''">
+			and seri.`level` != #{notLevel} and seri.status = '1'
+		</if>
+		<include refid="where_clause"></include>
+		group by sedi.exam_details_id
+		order by sedi.update_time DESC, sedi.course_id ASC,sedi.exam_time asc
+		<if test="rows !=null and offset !=null">
+			limit #{offset} ,#{rows}
+		</if>
+	</select>
+
+	<sql id="where_clause">
+		<where>
+			<if test="examId != null and examId !=''">
+				and sedi.exam_id = #{examId,jdbcType=VARCHAR}
+			</if>
+			<if test="name != null and name !=''">
+				and sei.name like "%"#{name}"%"
+			</if>
+			<if test="type != null and type !=''">
+				and sei.type = #{type}
+			</if>
+			<if test="userId != null and userId !=''">
+				and sepis.user_id = #{userId,jdbcType=VARCHAR}
+			</if>
+			<if test="schoolId !=null and schoolId !=''">
+				and sei.school_id=#{schoolId}
+			</if>
+			<if test="termId !=null and termId !=''">
+				and sei.term_id=#{termId}
+			</if>
+			<if test="gradeCode !=null and gradeCode !=''">
+				and sedi.grade_code=#{gradeCode}
+			</if>
+			<if test="gradeName !=null and gradeName !=''">
+				and sedi.grade_name=#{gradeName}
+			</if>
+			<if test="classId !=null and classId !=''">
+				and sedi.class_id=#{classId}
+			</if>
+			<if test="classIds !=null and classIds.size()>0">
+				and sedi.class_id in (
+				<foreach collection="classIds" item="item" separator=",">
+					#{item}
+				</foreach>
+				)
+			</if>
+			<if test="className !=null and className !=''">
+				and sedi.class_name=#{className}
+			</if>
+			<if test="subjectCode !=null and subjectCode !=''">
+				and sedi.subject_code=#{subjectCode}
+			</if>
+			<if test="subjectName !=null and subjectName !=''">
+				and sedi.subject_name=#{subjectName}
+			</if>
+			<if test="examDetailsId !=null and examDetailsId !=''">
+				and sedi.exam_details_id=#{examDetailsId}
+			</if>
+			<if test="courseIdList != null and courseIdList.size > 0">
+				and sedi.course_id IN
+				<foreach collection="courseIdList" item="courseId" open="(" close=")" separator=",">
+					#{courseId}
+				</foreach>
+			</if>
+		</where>
+	</sql>
+
+	<insert id="batchInsert" parameterType="List">
+
+		INSERT INTO exam_details_info
+		(exam_details_id ,
+		exam_id ,
+		grade_code ,
+		grade_name ,
+		class_id ,
+		class_name ,
+		subject_code ,
+		subject_name ,
+		exam_time ,
+		actual_student_number ,
+		creator ,
+		create_time,
+		updator,
+		update_time ,
+		plan_student_number ,
+		course_id ,
+		course_name ,
+		course_attribute ,
+		total_score
+		)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.examDetailsId},
+			#{item.examId},
+			#{item.gradeCode},
+			#{item.gradeName},
+			#{item.classId},
+			#{item.className},
+			#{item.subjectCode},
+			#{item.subjectName},
+			#{item.examTime},
+			#{item.actualStudentNumber},
+			#{item.creator},
+			#{item.createTime},
+			#{item.updator},
+			#{item.updateTime},
+			#{item.planStudentNumber},
+			#{item.courseId},
+			#{item.courseName},
+			#{item.courseAttribute},
+			#{item.totalScore}
+			)
+		</foreach>
+		ON DUPLICATE KEY UPDATE
+		exam_details_id = VALUES(exam_details_id),
+		exam_id = VALUES(exam_id),
+		grade_code = VALUES(grade_code),
+		grade_name = VALUES(grade_name),
+		class_id = VALUES(class_id),
+		class_name = VALUES(class_name),
+		subject_code = VALUES(subject_code),
+		subject_name = VALUES(subject_name),
+		exam_time = VALUES(exam_time),
+		actual_student_number = VALUES(actual_student_number),
+		creator = VALUES(creator),
+		create_time = VALUES(create_time),
+		updator = VALUES(updator),
+		update_time = VALUES(update_time),
+		plan_student_number = VALUES(plan_student_number),
+		course_id = VALUES(course_id),
+		course_name = VALUES(course_name),
+		course_attribute = VALUES(course_attribute),
+		total_score = VALUES(total_score)
+
+	</insert>
+</mapper>

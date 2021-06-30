@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="false" scanPeriod="60 seconds" debug="false">
+    
+    <property name="LOG_HOME" value="/home/icampus3.0/logs/" />
+    <property name="appName" value="enable-cloud-exam-microservice"></property>
+    <contextName>${appName}</contextName>
+
+    <appender name="fileLogAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">        
+        <file>${LOG_HOME}/${appName}.log</file>     
+        <append>true</append>   
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">           
+            <fileNamePattern>${LOG_HOME}/${appName}-%d{yyyy-MM-dd}-%i.log</fileNamePattern>            
+            <MaxHistory>90</MaxHistory>           
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>100MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>            
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} [ %thread ] - [ %-5level ] [ %logger{50} : %line ] - %msg%n</pattern>
+        </layout>
+    </appender>
+    
+    <logger name="com.enableets.edu.enable.cloud.exam.framework.dao" level="debug"></logger>
+    <root level="info">
+        <appender-ref ref="fileLogAppender" />
+        <appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+	        <layout class="ch.qos.logback.classic.PatternLayout">
+	            <pattern>%d{mm:ss.SSS} [%thread] %-5level %logger{50} - %msg%n</pattern>
+	        </layout>
+	    </appender>
+    </root>
+</configuration> 

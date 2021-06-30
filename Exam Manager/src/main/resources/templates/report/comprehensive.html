@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" xmlns:v-on="http://www.w3.org/1999/xhtml"
+      xmlns:v-bind="http://www.w3.org/1999/xhtml" layout:decorator="comm/layout3">
+<head>
+    <title>报告分析</title>
+
+    <link rel="stylesheet" type="text/css" th:href="${_contextPath} + @{/custom/cloudexam/js/paging/page2.css}" />
+
+    <script type="text/javascript" th:src="${_contextPath} + @{/comm/js/BaseUtils.js(v=${_v})}"></script>
+    <script type="text/javascript" th:src="${_contextPath} + @{/comm/plugins/vue-2.5.21/vue.min.js(v=${_v})}"></script>
+    <script type="text/javascript" data-th-src="${_contextPath} + @{/comm/plugins/layer/layer.js(v=${_v})}"></script>
+    <script type="text/javascript" th:src="${_contextPath} + @{/comm/plugins/js/CommUtils.js(v=${_v})}"></script>
+    <script type="text/javascript" th:src="${_contextPath} + @{/comm/plugins/jsTree/jstree.min.js(v=${_v})}"></script>
+    <script type="text/javascript" th:src="${_contextPath} + @{/custom/cloudexam/js/ztree/ztree.js(v=${_v})}"></script>
+    <script type="text/javascript" th:src="${_contextPath} + @{/custom/cloudexam/js/paging/page.js(v=${_v})}"></script>
+    <script type="text/javascript" th:src="${_contextPath} + @{|/custom/cloudexam/js/paging/lang/${_locale}.js|(v=${_v})}"></script>
+    <script type="text/javascript" th:src="${_contextPath} + @{/custom/cloudexam/js/report/comprehensive.js}"></script>
+
+    <style th:inline="text">
+        *[v-cloak] {display: none;}
+    </style>
+    <script type="text/javascript" th:inline="javascript">
+        /*<![CDATA[*/
+        if (window.i18n == undefined) {
+            window.i18n = {};
+        }
+        $(function (){
+            $.extend(i18n,{
+                'classAll':[[#{UI_76_02_03}]]
+            });
+            Report.userId = [[${userId}]];
+            Report.queryTestInfoListUrl = [[${_contextPath} + @{/report/testInfoList}]];
+            Report.totalUrl = [[${_contextPath} + @{/report/count}]];
+            Report.viewRePortUrl = [[${viewReportUrl}]];
+            Report.teacherBaseInfo = [[${teacherBaseInfo}]];
+            Report.init();
+            KnowledgeTree.init([[${_contextPath}]]);
+        });
+
+        function ztreeCall(obj){
+            //obj当前中的节点
+            console.log(obj.original.searchCode);
+            //treeNode获得选中的集合
+            var treeNode = $('#knowledgeTree').jstree(true).get_checked(true);
+            console.log(treeNode);
+        }
+        /*]]>*/
+    </script>
+
+</head>
+
+<body>
+<div class="InfoBoxbig" id="report" v-cloak="" layout:fragment="InfoBoxbig">
+    <div class="main">
+        <div class="mainleft">
+            <div class="tree-style">
+                <div _ngcontent-vku-c65="" class="typeAll">
+                    <div _ngcontent-vku-c65="" nz-element="" class="headtitleName"><span
+                            _ngcontent-vku-c65=""><b id="sore" _ngcontent-vku-c65="">小学一年级语文人教2016版
+											2020-2021学年下学期</b></span><a _ngcontent-vku-c65="" nz-tooltip=""
+                                                                        class="glyphicon glyphicon-menu-right ng-star-inserted"></a>
+                    </div>
+                    <!---->
+                </div>
+                <div class="nodeBox">
+                    <nz-tree nzblocknode="" nzshowline=""
+                             class="ng-tns-c71-1 ant-select-tree ant-select-tree-show-line ant-select-tree-icon-hide ant-select-tree-block-node">
+                        <div role="tree" class="ng-tns-c71-1"><input class="ng-tns-c71-1"
+                                                                     style="width: 0px; height: 0px; display: flex; overflow: hidden; opacity: 0; border: 0px; padding: 0px; margin: 0px;">
+                        </div>
+                        <div class="ant-tree-list ng-tns-c71-1 ant-select-tree-list">
+                            <div class="ng-tns-c71-1">
+                                <!---->
+                                <div
+                                        class="ng-tns-c71-1 ant-select-tree-list-holder-inner ng-trigger ng-trigger-treeCollapseMotion ng-star-inserted">
+                                    <!---->
+                                    <div class="knowledge_tree">
+                                        <div id="knowledgeTree"></div>
+                                    </div>
+                                </div>
+                                <!---->
+                            </div>
+                        </div>
+                        <!---->
+                    </nz-tree>
+                    <p class="ng-star-inserted"><img th:src="${_contextPath} + @{/custom/cloudexam/img/nodata.png}" alt=""></p>
+                    <!---->
+                    <nz-spin nzsimple="" nztip="Loading...">
+                        <!---->
+                        <!---->
+                        <!---->
+                    </nz-spin>
+                </div>
+                <!---->
+            </div>
+        </div>
+        <div class="mainright">
+            <div class="stepNav" style="margin-top:0px">
+                <div class="stepNavTopBox">
+                    <div class="stepNavTop">
+                        <div class="selectClassBox"><span class="className" th:text="|#{UI_76_02_02}|">班级</span>
+                           <!-- <select v-model="comprehensive.classSelect" class="ant-select-selection-search-input" v-on:change="selectByClass(event)">
+                                <option v-for="classInfo in comprehensive.classList" :value="classInfo.classId" >
+                                    {{classInfo.className}}
+                                </option>
+                            </select>-->
+                            <select id= "classMap"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="stepList">
+                    <div class="stepLiBox ng-star-inserted" v-for="testInfo in comprehensive.testInfoList">
+                        <div class="li_right">
+                            <div class="imgBox"><img th:src="${_contextPath} + @{/custom/cloudexam/img/test.png}" alt=""></div>
+
+                            <div class="detailBox">
+                                <div class="title" >
+                                    {{testInfo.testName}}
+                                </div>
+                                <div class="detailSm">
+                                    <span class="ng-star-inserted" v-if="testInfo.className">{{testInfo.className}}</span>
+                                    <span class="ng-star-inserted" v-else>{{testInfo.groupName}}</span>
+                                    <em>|</em>
+                                    <span class="ng-star-inserted">{{testInfo.subjectName}}</span>
+                                    <em>|</em>
+                                    <span th:inline="text">[[#{UI_76_02_05}]]：{{testInfo.createTime}}</span>
+                                </div>
+                            </div>
+                            <div class="contronBox">
+                                <div class="buttonBox2 margin_0" th:text="|#{UI_76_02_04}|" :stepId="testInfo.stepId" :classId="testInfo.classId" :groupId="testInfo.groupId" :fileId="testInfo.fileId" onclick="Report.viewRePort(event)">查看报告</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="noTestInfo">
+                        <p class="ng-star-inserted"><img th:src="${_contextPath} + @{/custom/cloudexam/img/nodata.png}" alt=""></p>
+                    </div>
+                </div>
+                <div class="pageBox">
+                    <div class="page_box ng-star-inserted">
+                        <div class="page_box_tips col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                            <span>共<span>{{search.pageNum}}</span>页/{{search.count}}条</span>
+                        </div>
+                        <ul class="pageOne col-xs-12 col-sm-9 col-md-9 col-lg-9" maxshowpageitem="5" pagelistcount="10" id="pageOne">
+                        </ul>
+                    </div>
+                    <!---->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!---->
+</div>
+</body>
+
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div id="header" th:fragment="header">
+	<form th:action="${_contextPath} + @{/logout}" method="post" name="logoutForm" id="logoutForm"></form>
+	<link rel="stylesheet" type="text/css" th:href="${_contextPath} + @{/custom/cloudexam/css/header.css(v=${_v})}" />
+	<div class="header clearfix">
+		<nav class="navbar navbar-inverse">
+			<div class="container">
+				<div class="navbar-header"><button type="button" data-toggle="collapse" data-target="#navbar"
+												   aria-expanded="false" aria-controls="navbar" class="navbar-toggle collapsed"><span
+						class="sr-only">菜单</span><span class="icon-bar"></span><span class="icon-bar"></span><span
+						class="icon-bar"></span></button><a href="" class="navbar-brand"><span><img
+						src="https://class.edu.enable-ets.com/content/assets/images/img/33logo.png"
+						class="logoImg"></span></a></div>
+				<div _ngcontent-mgw-c107="" class="tab-list" >
+					<th:block th:each="menuHeader : ${menuJsonHeader}">
+						<a _ngcontent-mgw-c107="" th:if="${menuHeader.menuId == menuHeaderId}" class="tab active" th:href="${menuHeader.url}" th:text="${menuHeader.name}">教学资源</a>
+						<a _ngcontent-mgw-c107="" th:unless="${menuHeader.menuId == menuHeaderId}" class="tab" th:href="${menuHeader.url}" th:text="${menuHeader.name}">教学资源</a>
+					</th:block>
+				</div>
+				<ul _ngcontent-mgw-c107="" class="nav navbar-nav navbar-right head_r">
+					<li _ngcontent-mgw-c107="" class="dropdown goout head_user">
+						<a _ngcontent-mgw-c107="" data-toggle="dropdown" role="button" aria-haspopup="false" aria-expanded="true" class="dropdown-toggle">
+							<img _ngcontent-mgw-c107="" class="userimg" th:src="${#authentication.userAuthentication.details.photoUrl} != null and ${#authentication.userAuthentication.details.photoUrl} != '' ? ${#authentication.userAuthentication.details.photoUrl} : ${_contextPath} + @{/comm/v5/img/userV5.png}"//>
+							<span _ngcontent-mgw-c107="" class="admin" th:title="${#authentication.userAuthentication.details.name}" th:text="${#authentication.userAuthentication.details.name}">语文老师</span>
+							<span _ngcontent-mgw-c107="" class="adminName"></span></a>
+						<ul _ngcontent-mgw-c107="" class="dropdown-menu">
+							<th:block th:each="userMenu: ${userMenus}">
+								<li _ngcontent-mgw-c107="" th:if="${userMenu.url} != null and ${#strings.containsIgnoreCase(userMenu.url,'/logout')}">
+									<a _ngcontent-mgw-c107="" th:text="${userMenu.name}" href="javascript:;" onclick="BaseUtils.submitForm(document.logoutForm)">退出登录</a>
+								</li>
+								<li _ngcontent-mgw-c107="" th:unless="${userMenu.url} != null and ${#strings.containsIgnoreCase(userMenu.url,'/logout')}">
+									<a _ngcontent-mgw-c107="" target="_self" th:href="${userMenu.url}" th:text="${userMenu.name}">综合管理</a>
+								</li>
+							</th:block>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<div class="navFix">
+		<div class="container">
+			<ul class="nav nav-tabs">
+				<th:block th:each="menuNav: ${menuJson}">
+					<li role="presentation" class="dropdown">
+						<a th:href="${menuNav.url}" class="dropdown-toggle menuNav" th:data="${menuNav.name}" th:text="${menuNav.name}">总览</a></li>
+				</th:block>
+			</ul>
+		</div>
+	</div>
+	<script type="text/javascript" th:inline="javascript">
+		//<![CDATA[
+		var menuJsons = [[${menuJson}]];
+		var menuJsonHeaders = [[${menuJsonHeader}]];
+		var menuHeaderId = [[${menuHeaderId}]];
+		var addressUrl = [[${_contextPath} + @{/custom/cloudexam/img/address.png(v=${_v})}]];
+		var up3Url = [[${_contextPath} + @{/custom/cloudexam/img/up3.png(v=${_v})}]];
+		$(function () {
+			var title = $(document).attr("title");
+			var menuNavTemp;
+			var menuJsonHeaderTemp;
+			for (let menuNav of menuJsons) {
+				if (window.location.pathname.indexOf(menuNav.url) > -1) {
+					$(".navFix .nav-tabs .menuNav[data='" + menuNav.name + "'").addClass('active').siblings().removeClass('active');
+					menuNavTemp = menuNav;
+					break;
+				}
+			}
+			for (let menuJsonHeader of menuJsonHeaders) {
+				if (menuJsonHeader.menuId == menuHeaderId) {
+					menuJsonHeaderTemp = menuJsonHeader;
+					break;
+				}
+			}
+			var breadcrumbTemp = "<div><img src='" + addressUrl + "'alt='三三云学堂'></div><div>三三云学堂</div>";
+			breadcrumbTemp += "<div class='between ng-star-inserted'><img src='" + up3Url + "'>" + menuJsonHeaderTemp.name + "</div>";
+			if (menuNavTemp) {
+				breadcrumbTemp += "<div class='between ng-star-inserted'><img src='" + up3Url + "'>" + menuNavTemp.name + "</div>";
+			}
+			$(".content .breadBox.breadcrumb_nav").append(breadcrumbTemp);
+			$(document).attr("title","三三云学堂");
+		});
+		var identitys = [[${identitys}]];
+		if (identitys.indexOf("_SCHOOL_ADMIN") > -1) {
+			$(".header .head_r .head_user .adminName").text("学校管理员");
+		} else if (identitys.indexOf("_TEACHER") > -1) {
+			$(".header .head_r .head_user .adminName").text("老师");
+		} else if (identitys.indexOf("_STUDENT") > -1) {
+			$(".header .head_r .head_user .adminName").text("学生");
+		} else if (identitys.indexOf("_PARENT") > -1) {
+			$(".header .head_r .head_user .adminName").text("家长");
+		}
+		//]]>
+	</script>
+</div>
+</body>
+</html>

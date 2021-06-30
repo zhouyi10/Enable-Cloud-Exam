@@ -1,0 +1,32 @@
+/*可以在这里添加你自己的css*/
+/* 编辑器图片样式 */
+img {
+    max-height: 600px;
+    max-width: 700px;
+}
+.exer_content {
+    line-height: 24px;
+}
+
+.exerimg, .exerconnectionimg {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.qjdQuickAnswer {
+    display: none;
+    color: red;
+}
+
+.answer_div{
+    width: 4%;
+    float: left;
+}
+.analysis_div{
+    width: 96%;
+    float: left;
+}
+.answerTips{
+    overflow: hidden;
+    padding: 3px 0px;
+}

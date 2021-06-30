@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enableets.edu.enable.cloud.exam.framework.dao.ExamInfoDAO">
+
+    <select id="getExamV2" parameterType="long" resultMap="getExamV2Map">
+        SELECT
+            a.exam_id AS examId,
+            a.name,
+            a.type as `type`,
+            e.name as typeName,
+            a.plan_student_number AS planStudentNumber,
+            a.actual_student_number AS actualStudentNumber,
+            a.school_id AS schoolId,
+            a.school_code AS schoolCode,
+            a.school_year AS schoolYear,
+            a.term_id AS termId,
+            a.term_name AS termName,
+            a.graduate_num AS graduateNum,
+            a.grade_stage AS gradeStage,
+            a.grade_code AS gradeCode,
+            a.grade_name AS gradeName,
+            a.creator as creator,
+            a.create_time as createTime,
+            a.updator as updator,
+            a.update_time as updateTime
+        FROM
+        exam_info a
+        left join exam_dictionary e on e.`code` = a.type and e.type = 'exam_type'
+        WHERE a.exam_id = #{examId}
+    </select>
+
+    <resultMap type="com.enableets.edu.enable.cloud.exam.framework.po.ExamInfoPO" id="getExamV2Map">
+        <id column="examId" property="examId"/>
+        <result column="name" property="name"/>
+        <result column="examTypeCode" property="examTypeCode"/>
+        <result column="type" property="type"/>
+        <result column="planStudentNumber" property="planStudentNumber"/>
+        <result column="actualStudentNumber" property="actualStudentNumber"/>
+        <result column="schoolId" property="schoolId"/>
+        <result column="schoolCode" property="schoolCode"/>
+        <result column="schoolYear" property="schoolYear"/>
+        <result column="termId" property="termId"/>
+        <result column="termName" property="termName"/>
+        <result column="graduateNum" property="graduateNum"/>
+        <result column="gradeStage" property="gradeStage"/>
+        <result column="gradeCode" property="gradeCode"/>
+        <result column="gradeName" property="gradeName"/>
+        <result column="studentNumber" property="studentNumber"/>
+        <collection property="details" column="examId"
+                    select="com.enableets.edu.enable.cloud.exam.framework.dao.ExamDetailsInfoDAO.queryDetailsByExamId">
+        </collection>
+    </resultMap>
+
+    <select id="query" parameterType="map" resultType="com.enableets.edu.enable.cloud.exam.framework.po.ExamInfoPO">
+        SELECT
+        a.exam_id AS examId,
+        a.name,
+        a.type,
+        e.name as typeName,
+        a.plan_student_number AS planStudentNumber,
+        a.actual_student_number AS actualStudentNumber,
+        a.school_id AS schoolId,
+        a.school_code AS schoolCode,
+        a.school_year AS schoolYear,
+        a.term_id AS termId,
+        a.term_name AS termName,
+        a.graduate_num AS graduateNum,
+        a.grade_stage AS gradeStage,
+        a.grade_code AS gradeCode,
+        a.grade_name AS gradeName,
+        a.publish_status as publishStatus,
+        a.creator as creator,
+        a.create_time as createTime,
+        a.updator as updator,
+        a.update_time as updateTime
+        FROM
+        exam_info a
+        join exam_dictionary e on e.`code` = a.type and e.type = 'exam_type'
+        join (
+        SELECT DISTINCT a.exam_id
+        FROM `exam_info` a
+        join exam_details_info b on a.exam_id = b.exam_id
+        <where>
+            <if test="schoolId != null and schoolId !=''">
+                and a.school_id = #{schoolId}
+            </if>
+            <if test="termId != null and termId !=''">
+                and a.term_id = #{termId}
+            </if>
+            <if test="name != null and name !=''">
+                and a.name like "%"#{name}"%"
+            </if>
+            <if test="userId != null and userId !=''">
+                and a.creator = #{userId}
+            </if>
+            <if test="classId != null and classId !=''">
+                and b.class_id = #{classId}
+            </if>
+            <if test="courseId != null and courseId !=''">
+                and b.course_id = #{courseId}
+            </if>
+        </where>
+        ORDER BY a.create_time DESC
+        <if test="rows != null and rows != 0 ">
+            limit #{offset},#{rows}
+        </if>
+        ) c on a.exam_id = c.exam_id
+        ORDER BY a.create_time DESC
+    </select>
+
+    <select id="count" parameterType="map" resultType="int">
+        SELECT count(DISTINCT a.exam_id)
+        FROM `exam_info` a
+        join exam_details_info b on a.exam_id = b.exam_id
+        <where>
+            <if test="schoolId != null and schoolId !=''">
+                and a.school_id = #{schoolId}
+            </if>
+            <if test="termId != null and termId !=''">
+                and a.term_id = #{termId}
+            </if>
+            <if test="name != null and name !=''">
+                and a.name like "%"#{name}"%"
+            </if>
+            <if test="userId != null and userId !=''">
+                and a.creator = #{userId}
+            </if>
+            <if test="classId != null and classId !=''">
+                and b.class_id = #{classId}
+            </if>
+            <if test="courseId != null and courseId !=''">
+                and b.course_id = #{courseId}
+            </if>
+        </where>
+    </select>
+
+
+    <delete id="deleteExamPointInputSetting">
+        DELETE
+        sepis
+        FROM
+        exam_point_input_setting sepis
+        INNER JOIN exam_details_info sedi ON sepis.exam_details_id = sedi.exam_details_id
+        INNER JOIN exam_info sei ON sei.exam_id = sedi.exam_id
+        <where>
+            <if test="examId != null ">
+                and sei.exam_id = #{examId}
+            </if>
+        </where>
+    </delete>
+
+    <delete id="deleteExamDetailsInfo">
+        DELETE
+        sedi
+        FROM
+        exam_details_info sedi
+        <where>
+            <if test="examId != null ">
+                and exam_id = #{examId}
+            </if>
+        </where>
+    </delete>
+
+    <delete id="deleteExamInfo">
+        DELETE
+        sei
+        FROM
+        exam_info sei
+        <where>
+            <if test="examId != null ">
+                and exam_id = #{examId}
+            </if>
+        </where>
+    </delete>
+
+
+    <update id="updatePublishStatus" parameterType="long">
+        update exam_info a1,
+            (select detail.exam_id, count(detail.exam_details_id) as totalCount, sum(case when stepTask.activity_id is null then 0 else 1 end) as publishedCount
+            from exam_details_info detail, exam_details_step_task_info stepTask
+            where detail.exam_details_id = stepTask.exam_details_id and detail.exam_id = #{examId}) a2
+        set a1.publish_status = case WHEN a2.publishedCount = 0 then '0' when a2.totalCount = a2.publishedCount then '1' else '2' end
+        where a1.exam_id = a2.exam_id and a1.exam_id = #{examId}
+    </update>
+
+</mapper>

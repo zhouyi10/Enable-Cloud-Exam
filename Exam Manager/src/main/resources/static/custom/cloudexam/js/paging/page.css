@@ -1,0 +1,28 @@
+#divPage{height:21px;}
+#divPage ul li:first-child{ cursor:default;}
+#divPage ul li{float:left; margin-left:2px; cursor:pointer; height:21px;line-height:21px;text-align:center;}
+#divPage ul li.firstPage{width:21px;height:21px; background:url(../../images/pageLastAll.png) no-repeat;}
+#divPage ul li.firstPage01{width:14px;height:14px; background:url(../../images/index_search_v7_06_gray.gif) no-repeat; cursor:default;}
+
+#divPage ul li.prePage{width:21px;height:21px; background:url(../../images/pageLast.png) no-repeat;margin-right:2px;}
+#divPage ul li.prePage01{width:14px;height:14px; background:url(../../images/index_search_v7_08_gray.gif) no-repeat;margin-right:2px;cursor:default;}
+
+#divPage ul li.num{height:21px;width:21px;background:url(../../images/pageBg.png);}
+#divPage ul li.do{background:url(../../images/pageBg2.png); color:#fff;height:21px;width:21px;}
+#divPage ul li.nextPage{width:21px;height:21px; background:url(../../images/pageNext.png) no-repeat;margin-left:4px;}
+#divPage ul li.nextPage01{width:14px;height:14px; background:url(../../images/index_search_v7_10_gray.gif) no-repeat;margin-left:4px;cursor:default;}
+
+
+#divPage ul li.lastPage{width:21px;height:21px; background:url(../../images/pageNextAll.png) no-repeat;}
+#divPage ul li.lastPage01{width:14px;height:14px; background:url(../../images/index_search_v7_12_gray.gif) no-repeat;cursor:default;}
+.floatAliRight{float:right;}
+.distanTop01{margin-top:10px;margin-bottom:10px;}
+
+
+#main .page{font:700 12px Arial; color:#2e6c91;}
+#main .page li{ float:left;width:21px;height:21px;background:url(../../images/pageBg.png); line-height:20px; margin:0 2px; text-align:center; cursor:pointer;}
+#main .page li.do{background:url(../../images/pageBg2.png); color:#fff;}
+#main .page li.pageLastAll{ background:url(../../images/pageLastAll.png);}
+#main .page li.pageLast{background:url(../../images/pageLast.png);}
+#main .page li.pageNextAll{ background:url(../../images/pageNextAll.png);}
+#main .page li.pageNext{background:url(../../images/pageNext.png);}

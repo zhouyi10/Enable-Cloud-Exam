@@ -1,0 +1,837 @@
+
+/*Modal Mask */
+.ant-modal-wrap{
+  overflow: hidden;
+}
+
+.ant-pagination-item-active {
+  background-color: #2063CE !important;
+}
+
+.ant-pagination-item-active a {
+  color: #fff !important;
+}
+
+.ant-pagination-options-quick-jumper {
+  height: 35px !important;
+}
+
+.page_box {
+  position: relative;
+  position: relative;
+  text-align: right;
+}
+
+.ant-pagination-item {
+  border-radius: 0px !important;
+}
+
+.ant-pagination-prev .ant-pagination-item-link,
+.ant-pagination-next .ant-pagination-item-link {
+  border-radius: 0px !important;
+}
+.ant-pagination-total-text{
+  position: absolute;
+  left: 0;
+}
+
+input {
+  width: 100%;
+  border-radius: 0;
+  border: 1px solid #bfbfbf;
+  height: 32px;
+  padding-left: 10px;
+  &:focus-visible{
+      outline: none;
+      border: 1px solid #40a9ff;
+  }
+}
+
+textarea {
+  padding-left: 10px;
+  width: 100%;
+  border-radius: 0;
+  border: 1px solid #bfbfbf;
+  &:focus-visible{
+      outline: none;
+      border: 1px solid #40a9ff;
+  }
+}
+.ant-select{
+min-width: 130px;
+}
+
+.ant-modal{
+  top: 10px !important;
+}
+
+
+
+/***part1****/
+.modal-content {
+	padding-bottom: 10px
+}
+
+.modal-body {
+	border-bottom: 1px solid #cfcfcf;
+	border-radius: 0
+}
+
+.layui-layer-btn .layui-layer-btn0 {
+	border-color: #d5d5d5 !important;
+	background-color: initial !important;
+	color: #000 !important
+}
+
+/***part2****/
+.nav {
+	display: flex
+}
+
+.router-link-active {
+	background-color: #032da4
+}
+
+/***part3****/
+.main {
+	display: flex
+}
+
+.main .title {
+	font-size: 18px;
+    font-weight: 600;
+}
+.main .titlesplit{
+	width: 6px;
+    height: 25px;
+    background-color: #1C63D0;
+    margin-right: 10px;
+}
+
+.main .mainleft {
+	margin-right: 10px
+}
+
+.main .prepare-list {
+	padding: 0 18px
+}
+
+.main .prepare-list .item {
+	display: flex;
+	align-items: flex-start;
+	padding: 18px 0;
+	border-bottom: 1px solid #e6e9ee
+}
+
+.main .prepare-list .item :last-of-type {
+	border-bottom: none
+}
+
+.main .prepare-list .item .pic-left {
+	padding: 20px 20px 10px;
+	background-color: #f0f4f5
+}
+
+.main .prepare-list .item .pic {
+	text-align: center;
+	color: #2062cf;
+	background: #f1f2f4;
+	padding: 19px 29px
+}
+
+.main .prepare-list .item .text {
+	padding-left: 20px;
+	flex: 1
+}
+
+.main .prepare-list .item .text .tit {
+	color: #1c63d0;
+	font-size: 18px
+}
+
+.main .prepare-list .item .text p {
+	font-size: 14px;
+	color: #666
+}
+
+.main .prepare-list .item .text p span {
+	padding: 0 10px;
+	color: #bfbfbf
+}
+
+.main .prepare-list .item .text .course-list {
+	display: flex;
+	align-items: center
+}
+
+.main .prepare-list .item .text .course-list .left {
+	display: flex;
+	align-items: center;
+	flex: 1;
+	color: #666
+}
+
+.main .prepare-list .item .text .course-list .left .blue {
+	color: #2062cf;
+	padding: 0 3px;
+	cursor: pointer
+}
+
+.main .prepare-list .item .text .course-list .left .img_left {
+	margin-right: 5px
+}
+
+.main .prepare-list .item .text .course-list .left .img_right {
+	margin-left: 20px;
+	cursor: pointer
+}
+
+.main .prepare-list .item .text .course-list .right button {
+	position: relative;
+	background: #fff;
+	color: #2062cf;
+	border: 1px solid #2062cf;
+	cursor: pointer;
+	float: right;
+	font-size: 14px;
+	width: 80px;
+	margin-left: 10px;
+	padding: 4px 0
+}
+
+.main .prepare-list .item .text .course-list .right button.gray {
+	color: #999;
+	border: 1px solid #999
+}
+
+.main .prepare-list .item .text .course-list .right button i {
+	color: #2062cf
+}
+
+.main .prepare-list .item .text .course-list .right button :hover .hover {
+	display: block
+}
+
+.main .prepare-list .item .text .course-list .right .hover {
+	display: none;
+	position: absolute;
+	width: 80px;
+	border: 1px solid #2062cf;
+	background: #fff;
+	top: 29px;
+	left: -1px
+}
+
+.main .prepare-list .item .text .course-list .right .hover div {
+	padding: 4px 0
+}
+
+.main .prepare-list .item .text .course-list .right .hover div :hover {
+	background: #2062cf;
+	color: #fff
+}
+
+.main .prepare-list .item .text .course-table {
+	margin-top: 10px;
+	width: 62%;
+	border: 1px solid #ccc
+}
+
+.main .prepare-list .item .text .course-table .per {
+	border-bottom: 1px solid #ccc;
+	padding: 8px 10px
+}
+
+.main .prepare-list .item .text .course-table .per :last-of-type {
+	border-bottom: none
+}
+
+.main .prepare-list .item .text .course-table .per i {
+	color: #bfbfbf;
+	padding: 0 6px
+}
+
+.main .prepare-list .item .text .course-table .per .glyphicon {
+	margin-right: 10px;
+	margin-left: 3px
+}
+
+.main .prepare-list .item .text .course-table .per .blue {
+	color: green
+}
+
+.main .prepare-list .item .text .course-table .per .gray {
+	color: #119d11
+}
+
+.main .prepare-list .item .text .course-table .per img {
+	float: right;
+	cursor: pointer
+}
+
+.main .prepare-list .item .text .course-table .per .orage {
+	color: orange
+}
+
+.main .prepare-list .item .text .course-table .per .pr3 {
+	padding-right: 3px
+}
+
+.main .prepare-list .item >span {
+	cursor: pointer;
+	font-size: 22px;
+	color: red
+}
+
+.maintop {
+	flex: 1
+}
+
+.maintop .aminNav {
+	display: flex;
+	background-color: #fff;
+	height: 53px;
+	width: 100%;
+	font-size: 18px;
+	font-weight: 600;
+	box-sizing: border-box;
+	padding: 0 20px;
+	align-items: center;
+	margin-bottom: 0 !important
+}
+
+.maintop .aminNav .navLi {
+	margin-right: 30px;
+	height: 100%;
+	line-height: 53px
+}
+
+.maintop .aminNav .activeLi {
+	color: #2062cf;
+	border-bottom: 2px solid #2062cf
+}
+
+
+.main .mainright {
+	flex: 1
+}
+
+.main .mainright .aminNav {
+	display: flex;
+	background-color: #fff;
+	height: 53px;
+	width: 100%;
+	font-size: 18px;
+	font-weight: 600;
+	box-sizing: border-box;
+	padding: 0 20px;
+	align-items: center;
+	margin-bottom: 0 !important
+}
+
+.main .mainright .aminNav .navLi {
+	margin-right: 30px;
+	height: 100%;
+	line-height: 53px
+}
+
+.main .mainright .aminNav .activeLi {
+	color: #2062cf;
+	border-bottom: 2px solid #2062cf
+}
+
+.main .mainright .stepNav {
+	background-color: #fff;
+	margin-top: 10px
+}
+
+.main .mainright .stepNav .stepNavTopBox {
+	display: flex;
+	justify-content: space-between;
+	padding: 0 20px;
+	width: 100%
+}
+
+.main .mainright .stepNav .stepNavTopBox .stepNavTop {
+	display: flex;
+	height: 50px;
+	align-items: center
+}
+
+.main .mainright .stepNav .stepNavTopBox .stepNavTop .className {
+	margin-right: 10px
+}
+
+
+
+.main .mainright .stepNav .stepNavTopBox .stepNavTop .checkAllBox {
+	display: flex;
+	width: 80px;
+	align-items: center;
+	margin: 0;
+	height: 100%;
+	font-weight: 500
+}
+
+.main .mainright .stepNav .stepNavTopBox .stepNavTop .checkAllBox input {
+	width: 20px;
+	height: 20px;
+	margin-top: 0;
+	margin-right: 10px
+}
+
+.main .mainright .stepNav .stepNavTopBox .navRight {
+	display: flex;
+	justify-content: flex-start;
+	align-items: center
+}
+
+.main .mainright .stepNav .stepList {
+	border-top: 1px solid #ccc
+}
+
+.main .mainright .stepNav .stepList .checkOne {
+	width: 20px;
+	height: 20px;
+	margin-top: 0;
+	margin-right: 20px
+}
+
+.main .mainright .stepNav .stepList .questionBox {
+	/*height: 110px;*/
+	padding: 10px 20px 0;
+	align-items: center
+}
+
+.main .mainright .stepNav .stepList .li_question {
+	padding: 0 20px;
+	flex: 1;
+	/*height: 75px;*/
+	border: 1px solid #ccc;
+	align-items: center
+}
+
+.main .mainright .stepNav .stepList .li_index {
+	height: 30px;
+	border: 1px solid #ccc;
+	border-top:0px;
+	background-color:#FAFAFB
+}
+
+.main .mainright .stepNav .stepList .li_index .num{
+	padding-left: 10px;
+    font-size: 15px;
+	display:inline-block;
+	width:50px;
+}
+.main .mainright .stepNav .stepList .li_index .info{
+	padding-right: 10px;
+    font-size: 15px;
+	display: inline-block;	
+	float:right;
+}
+
+.main .mainright .stepNav .stepList .li_index .info .content{
+	display: flex;	
+}
+
+.main .mainright .stepNav .stepList .stepLiBox {
+	display: flex;
+	height: 100px;
+	padding: 10px 20px 0;
+	align-items: center
+}
+
+
+.main .mainright .stepNav .stepList .stepLiBox .li_right {
+	padding: 0 20px;
+	flex: 1;
+	height: 100%;
+	border: 1px solid #ccc;
+	display: flex;
+	align-items: center
+}
+
+.main .mainright .stepNav .stepList .stepLiBox .li_right .imgBox {
+	background-color: #e6e9ee;
+	padding: 10px
+}
+
+.main .mainright .stepNav .stepList .stepLiBox .li_right .detailBox {
+	flex: 1;
+	margin-left: 10px
+}
+
+.main .mainright .stepNav .stepList .stepLiBox .li_right .detailBox .title {
+	font-size: 18px;
+	font-weight: 600
+}
+
+.main .mainright .stepNav .stepList .stepLiBox .li_right .detailBox .title :hover {
+	color: #2062cf
+}
+
+.main .mainright .stepNav .stepList .stepLiBox .li_right .detailBox .detailSm {
+	margin-top: 8px
+}
+
+.main .mainright .stepNav .stepList .stepLiBox .li_right .detailBox .detailSm em {
+	color: #ccc;
+	margin: 0 20px
+}
+
+.main .mainright .stepNav .stepList .stepLiBox .li_right .detailBox .detailSm .grgoupName {
+	margin-right: 4px
+}
+
+.buttonBox {
+	width: 60px;
+	height: 30px;
+	color: #0d67c7;
+	border: 1px solid #0d67c7;
+	margin-left: 20px;
+	text-align: center;
+	line-height: 30px
+}
+
+.buttonBox :hover {
+	background-color: #d9e8fe
+}
+
+.buttonBox2 {
+	width: 80px;
+	height: 30px;
+	color: #0d67c7;
+	border: 1px solid #0d67c7;
+	margin-left: 20px;
+	text-align: center;
+	line-height: 30px
+}
+
+.buttonBox2 :hover {
+	background-color: #d9e8fe
+}
+
+.margin_0 {
+	margin: 0 !important
+}
+
+.empty {
+	text-align: center;
+	margin: 50px 0;
+	font-size: 16px
+}
+
+.empty .blue {
+	padding: 0 5px;
+	color: #1c63d0;
+	cursor: pointer
+}
+
+.empty p {
+	margin-top: 20px
+}
+
+.modal-bg {
+	position: fixed;
+	background: rgba(0, 0, 0, .5);
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 100
+}
+
+.modal-bg .modal-above {
+	margin: 15% auto;
+	width: 380px;
+	min-height: 200px;
+	background: #fff
+}
+
+.modal-bg .modal-above .modal-head {
+	background: #0d67c7;
+	color: #fff;
+	padding: 6px 15px
+}
+
+.modal-bg .modal-above .modal-head .close1 {
+	float: right;
+	color: #fff;
+	font-size: 26px;
+	position: relative;
+	top: -10px;
+	cursor: pointer
+}
+
+.modal-bg .modal-above .modal-cont {
+	padding-top: 10px
+}
+
+.modal-bg .modal-above .modal-cont .tit {
+	padding: 0 15px;
+	color: #000
+}
+
+.modal-bg .modal-above .modal-cont p {
+	padding: 0 15px;
+	margin-top: 5px;
+	font-size: 12px;
+	color: #5a5656
+}
+
+.modal-bg .modal-above .modal-cont .modal-select {
+	display: flex;
+	padding: 10px 14px;
+	border-top: 1px solid #e6e9ee;
+	border-bottom: 1px solid #e6e9ee
+}
+
+.modal-bg .modal-above .modal-cont .modal-select span {
+	color: #000
+}
+
+.modal-bg .modal-above .modal-cont .modal-select .select {
+	margin-left: 20px
+}
+
+.modal-bg .modal-above .modal-cont .modal-select .select div {
+	margin-bottom: 8px
+}
+
+.modal-bg .modal-above .modal-cont .modal-select .select div label {
+	margin-right: 5px;
+	color: #000
+}
+
+.modal-bg .modal-above .modal-foot {
+	padding: 10px 0;
+	text-align: center;
+	display: flex;
+	justify-content: center
+}
+
+.modal-bg .modal-above .modal-foot .Btn {
+	background: #2062cf;
+	color: #fff;
+	border: none;
+	padding: 5px 25px;
+	cursor: pointer;
+	float: right;
+	font-size: 14px;
+	margin-left: 10px
+}
+
+.modal-bg .modal-above .modal-foot .Btn2 {
+	background: #fff;
+	color: #2062cf;
+	border: 1px solid #2062cf;
+	padding: 5px 25px;
+	cursor: pointer;
+	float: right;
+	font-size: 14px;
+	margin-left: 10px
+}
+
+.pageBox {
+	margin-top: 20px;
+	padding: 0 20px
+}
+
+/***part4****/
+.breadBox {
+	justify-content: flex-start;
+	margin: 10px 0 0
+}
+
+.breadBox ,
+.breadBox .between {
+	display: flex;
+	align-items: center
+}
+
+.breadBox .between img {
+	margin: 0 10px
+}
+
+/***part5****/
+.nodeBox {
+	position: relative
+}
+
+nz-spin {
+	width: 93%;
+	text-align: center;
+	display: block;
+	position: absolute;
+	top: 40px;
+	z-index: 9999
+}
+
+.tree-style {
+	width: 280px
+}
+
+p {
+	text-align: center;
+	padding-top: 50px
+}
+
+.file-name {
+	width: 138px;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	display: inline-block
+}
+
+.file-desc {
+	position: relative;
+	top: -6px
+}
+
+.file-num {
+	margin-top: 3px;
+	height: 19px;
+	background: #ffdcbd;
+	float: right;
+	color: #ff7200;
+	padding: 0 5px;
+	line-height: 17px;
+	border-radius: 15px
+}
+
+.nodeBox {
+	height: 670px;
+	overflow-y: scroll
+}
+
+ ::-webkit-scrollbar {
+	width: 6px;
+	height: 1px
+}
+
+ ::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background: #a8a8a8
+}
+
+/***part6****/
+
+a {
+	color: #000
+}
+
+/***part7****/
+
+.ant-tooltip .ant-tooltip-arrow {
+	display: none
+}
+
+.ant-tooltip .ant-tooltip-inner {
+	padding: 0;
+	box-shadow: none
+}
+
+.ant-tooltip .select-dialog {
+	display: block
+}
+
+.ant-tooltip .OneClass {
+	background: #fff;
+	border: 1px solid #3974cf;
+	width: 600px;
+	padding: 0 10px;
+	box-sizing: border-box;
+	box-shadow: 0 0 25px rgba(0, 0, 0, .4);
+	z-index: 100
+}
+
+@media (max-width:425px) {
+	.ant-tooltip .OneClass {
+		width: 400px
+	}
+}
+
+.ant-tooltip .OneClass .button-box {
+	padding-top: 20px;
+	text-align: center
+}
+
+.ant-tooltip .OneClass .button-box .buttonstyle:first-child {
+	margin-right: 12px
+}
+
+.ant-tooltip .buttonstyle {
+	display: inline-block;
+	width: 90px;
+	height: 34px;
+	line-height: 34px;
+	font-size: 15px;
+	color: #fff;
+	background: #1a5fcb;
+	text-align: center;
+	cursor: pointer
+}
+
+.ant-tooltip .select-dialog .box_ .list_ {
+	border-bottom: 1px dashed #e1e1e1;
+	position: relative;
+	box-sizing: border-box;
+	padding: 10px 0 0 60px;
+	width: 100%
+}
+
+.ant-tooltip .select-dialog .box_ .list_ label {
+	position: absolute;
+	top: 10px;
+	left: 0;
+	width: 60px;
+	text-align: center;
+	color: #000;
+	font-weight: 400
+}
+
+.ant-tooltip .select-dialog .box_ .list_ .rt_ {
+	min-height: 26px
+}
+
+.ant-tooltip .select-dialog .box_ .list_ .rt_ .l_ {
+	margin-bottom: 10px;
+	margin-right: 5px;
+	display: inline-block;
+	padding: 2px 10px;
+	color: #666;
+	font-size: 14px
+}
+
+.ant-tooltip .select-dialog .box_ .list_ .rt_ .l_.active,
+.ant-tooltip .select-dialog .box_ .list_ .rt_ .l_:hover {
+	background: #1a5fcb;
+	color: #fff
+}
+
+.ant-tooltip .select-dialog .button-box {
+	padding-top: 20px;
+	text-align: center
+}
+
+.ant-tooltip .select-dialog .button-box .buttonstyle:first-child {
+	margin-right: 12px
+}
+
+.ant-tooltip .active_ .select-lists .selectionBtn:after {
+	content: "";
+	display: inline-block;
+	border-bottom: 12px solid #fff;
+	border-left: 12px solid transparent;
+	border-right: 12px solid transparent;
+	position: absolute;
+	bottom: -15px;
+	left: 45%;
+	z-index: 20
+}
+
+.ant-tooltip .active_ .select-dialog {
+	display: block
+}

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enableets.edu.enable.cloud.exam.framework.dao.ExamQuestionMarkAssigneeDAO">
+
+    <select id="getAssignees" parameterType="map" resultType="com.enableets.edu.enable.cloud.exam.framework.po.ExamQuestionMarkAssigneePO">
+        select exam_id as examId,
+            course_id as courseId,
+            question_id as questionId,
+            user_id as userId,
+            full_name as fullName
+        from exam_question_mark_assignee
+        where exam_id = #{examId}
+        <if test="courseId != null and courseId != ''">
+            and course_id=#{courseId}
+        </if>
+        <if test="questionId != null and questionId != ''">
+            and question_id=#{questionId}
+        </if>
+    </select>
+
+    <delete id="deleteByExamId">
+        DELETE
+        sei
+        FROM
+        exam_question_mark_assignee sei
+        <where>
+            <if test="examId != null ">
+                and exam_id = #{examId}
+            </if>
+        </where>
+    </delete>
+
+    <insert id="batchAdd" parameterType="collection">
+        insert into `exam_question_mark_assignee`(`exam_id`, `course_id`, `question_id`, `user_id`, `full_name`, `creator`, `create_time`, `updator`, `update_time`)
+        values
+        <foreach collection="list" item="item" separator=",">
+            (
+            #{item.examId}, #{item.courseId}, #{item.questionId}, #{item.userId}, #{item.fullName}, #{item.creator}, #{item.createTime}, #{item.updator}, #{item.updateTime}
+            )
+        </foreach>
+    </insert>
+
+</mapper>

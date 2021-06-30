@@ -1,0 +1,44 @@
+logging:
+  config: classpath:logback.xml
+eureka:
+  instance:
+    ip-address: 192.168.118.31
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: enable-cloud-exam-manager-lh
+  cloud:
+    nacos:
+      config:
+        server-addr: 192.168.116.15:8848
+        name: enable-cloud-exam-manager
+        file-extension: yaml
+        group: DEFAULT_GROUP
+        sharedConfigs[0]:
+          data-id: comm.yaml
+          group: COMMON_GROUP
+          refresh: true
+        sharedConfigs[1]:
+          data-id: enable-serviceadmin-client.yaml
+          group: COMMON_GROUP
+          refresh: true
+        sharedConfigs[2]:
+          data-id: sso.yaml
+          group: COMMON_GROUP
+          refresh: true
+        sharedConfigs[3]:
+          data-id: redis.yaml
+          group: COMMON_GROUP
+          refresh: true
+        sharedConfigs[4]:
+          data-id: eureka.yaml
+          group: COMMON_GROUP
+          refresh: true
+
+sdk:
+  steptask-microservice:
+    name: enable-step-microservice
+  package-microservice:
+    name: package-microservice

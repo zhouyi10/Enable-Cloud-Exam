@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../Exam Framework/enable-cloud-exam-framework.iml" filepath="$PROJECT_DIR$/../Exam Framework/enable-cloud-exam-framework.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Exam Micro Service/enable-cloud-exam-micro-service.iml" filepath="$PROJECT_DIR$/../Exam Micro Service/enable-cloud-exam-micro-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../Exam Manager/enable-cloudexam-manager.iml" filepath="$PROJECT_DIR$/../Exam Manager/enable-cloudexam-manager.iml" />
+      <module fileurl="file://$PROJECT_DIR$/exam-modules.iml" filepath="$PROJECT_DIR$/exam-modules.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../SDK Exam/sdk-enable-cloud-exam.iml" filepath="$PROJECT_DIR$/../SDK Exam/sdk-enable-cloud-exam.iml" />
+    </modules>
+  </component>
+</project>

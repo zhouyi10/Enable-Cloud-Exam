@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN" "http://www.ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<mapper namespace="com.enableets.edu.enable.cloud.exam.framework.dao.ExamDetailsMarkAssigneeDAO">
+
+	 <select id="queryById" resultType="com.enableets.edu.enable.cloud.exam.framework.po.ExamDetailsMarkAssigneePO">
+		select
+			exam_details_id as examDetailsId,
+			user_id as userId,
+			creator as creator,
+			create_time as createTime,
+			updator as updator,
+			update_time as updateTime
+		from 
+			exam_details_mark_assignee
+			<where>
+			<if test="examDetailsId != null and examDetailsId !=''" >
+					and exam_details_id = #{examDetailsId}
+			</if>
+			<if test="userId != null and userId !=''" >
+					and user_id = #{userId}
+			</if>
+			<if test="creator != null and creator !=''" >
+					and creator = #{creator}
+			</if>
+			<if test="createTime != null and createTime !=''" >
+					and create_time = #{createTime}
+			</if>
+			<if test="updator != null and updator !=''" >
+					and updator = #{updator}
+			</if>
+			<if test="updateTime != null and updateTime !=''" >
+					and update_time = #{updateTime}
+			</if>
+		</where>
+	</select>
+
+
+	<delete id="deleteByDetailsId">
+		DELETE
+		sei
+		FROM
+		exam_details_mark_assignee sei
+		<where>
+			<if test="examDetailsId != null ">
+				and exam_details_id = #{examDetailsId}
+			</if>
+		</where>
+	</delete>
+
+	<insert id="batchInsert" parameterType="List">
+		insert into exam_details_mark_assignee(
+		exam_details_id ,
+		user_id ,
+		creator ,
+		create_time ,
+		updator ,
+		update_time
+		)values
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+			#{item.examDetailsId},
+			#{item.userId},
+			#{item.creator},
+			#{item.createTime},
+			#{item.updator},
+			#{item.updateTime}
+			)
+		</foreach>
+		ON DUPLICATE KEY UPDATE
+		exam_details_id = VALUES(exam_details_id),
+		user_id = VALUES(user_id),
+		creator = VALUES(creator),
+		create_time = VALUES(create_time),
+		updator = VALUES(updator),
+		update_time = VALUES(update_time)
+
+	</insert>
+
+</mapper>

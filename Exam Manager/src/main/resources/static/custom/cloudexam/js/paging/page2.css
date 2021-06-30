@@ -1,0 +1,18 @@
+.page_box .pageOne>.pageEllipsis {
+    display: inline-block;
+    width: 29px;
+    height: 29px;
+    font-size: 12px;
+    line-height: 28px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: none;
+    margin: 1px;
+    color: #333;
+    background: #fff;
+}
+#imageOne {content: url("../../img/up1.png");}
+#imageTwo {content: url("../../img/up2.png");}
+#imageThree {content: url("../../img/up3.png");}
+#imageFour {content: url("../../img/up4.png");}

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"></meta>
+    <title>三三云学堂</title>
+    <link th:href="'/manager/studytask' + @{/comm/plugins/Font-Awesome-4.7.0/css/font-awesome.min.css(v=${_v})}" rel="stylesheet" />
+    <script th:src="'/manager/studytask' + @{|/comm/plugins/error/lang/${_locale}.js|(v=${_v})}"></script>
+    <script th:src="'/manager/studytask' + @{|/comm/plugins/error/error.js|(v=${_v})}"></script>
+    <style>
+        ::-moz-selection {
+            background: #b3d4fc;
+            text-shadow: none;
+        }
+
+        ::selection {
+            background: #b3d4fc;
+            text-shadow: none;
+        }
+
+        html {
+            padding: 100px 10px;
+            font-size: 20px;
+            line-height: 1.4;
+            color: #737373;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        h1 {
+            margin: 0 10px;
+            font-size: 50px;
+            text-align: center;
+        }
+
+        h1 span {
+            color: #bbb;
+        }
+
+        h3 {
+            margin: 1.5em 0 0.5em;
+        }
+
+        p {
+            margin: 1em 0;
+        }
+
+        ul {
+            padding: 0 0 0 20px;
+            margin: 20px 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;padding:20px 0;
+        }
+        a,a：visited{ color: #48a0ff; text-decoration: none;}
+        a.return{ display: inline-block; font-size: 16px;}
+        .title{ height: 32px; line-height: 32px; }
+        .title em{ font-style: normal; padding:0 15px;}
+        i.fa-exclamation-triangle{ color:#ffce44; font-size:32px;}
+        .content{ border:1px solid #ddd; margin-top: 15px;}
+        .content ul li{ font-size:18px; line-height: 32px; list-style: none;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="title">
+        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+        <em id="error-unauthorized" data-th-if="${exception.getClass().getName()} == 'org.springframework.security.access.AccessDeniedException'">未授权的访问!</em>
+        <th:block th:unless="${exception.getClass().getName()} == 'org.springframework.security.access.AccessDeniedException'">
+            <em id="error">系统繁忙，请稍后重试!</em>
+            <a class="return" data-th-if="${debug}" href="javascript:;" onclick="toggleContent();"><i id="downUp" class="fa fa-angle-double-down" aria-hidden="true"></i></a>
+        </th:block>
+        <a id="back" class="return" style="font-size: 20px;margin-left: 10px" href="javascript:;" onclick="goBack();">返回</a>
+    </div>
+    <th:block th:unless="${exception.getClass().getName()} == 'org.springframework.security.access.AccessDeniedException'">
+        <div class="content" data-th-if="${debug}" style="display: none;">
+            <ul>
+                <li data-th-text="${exception}"></li>
+                <li data-th-each="stack : ${exception.stackTrace}" data-th-text="${stack.toString()}"></li>
+            </ul>
+        </div>
+    </th:block>
+    <script type="text/javascript">
+        // <![CDATA[
+        window.error.init();
+
+        function toggleContent(){
+            var display = document.getElementsByClassName("content")[0].style.display;
+            if (display == "none") {
+                document.getElementsByClassName("content")[0].style.display = "block";
+                document.getElementById("downUp").setAttribute("class", "fa fa-angle-double-up");
+            } else {
+                document.getElementsByClassName("content")[0].style.display = "none";
+                document.getElementById("downUp").setAttribute("class", "fa fa-angle-double-down");
+            }
+        }
+
+        function goBack() {
+            if (window.history.length == 1) {
+                window.location.reload();
+            }else {
+                window.history.back();
+            }
+        }
+        // ]]>
+    </script>
+</div>
+</body>
+</html>

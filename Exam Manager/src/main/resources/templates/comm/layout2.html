@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="htmlhead">
+    <meta charset="UTF-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta content="yes" name="apple-mobile-web-app-capable"></meta>
+    <meta content="black" name="apple-mobile-web-app-status-bar-style"></meta>
+    <meta content="telephone=yes" name="format-detection"></meta>
+    <meta content="email=yes" name="format-detection"></meta>
+
+    <script type="text/javascript" th:src="${_contextPath} + @{/comm/plugins/jQuery/jquery-3.4.1.min.js(v=${_v})}"></script>
+    <script type="text/javascript" th:src="${_contextPath} + @{/comm/plugins/bootstrap/bootstrap.min.js(v=${_v})}"></script>
+    <script type="text/javascript" th:src="${_contextPath} + @{/comm/js/BaseUtils.js(v=${_v})}"></script>
+
+    <link rel="stylesheet" type="text/css" th:href="${_contextPath} + @{/comm/plugins/bootstrap/bootstrap.min.css(v=${_v})}" />
+    <link rel="stylesheet" type="text/css" th:href="${_contextPath} + @{/custom/cloudexam/css/index.css(v=${_v})}" />
+    <link rel="stylesheet" type="text/css" th:href="${_contextPath} + @{/custom/cloudexam/css/ng-zorro-antd.css(v=${_v})}" />
+    <link rel="stylesheet" type="text/css" th:href="${_contextPath} + @{/custom/cloudexam/css/styles.css(v=${_v})}" />
+</head>
+
+<body>
+    <!--头部 -->
+    <div th:replace="comm/fragments/header2 :: header">header</div>
+    <!--主体模块-->
+    <div class="content" style="min-height: 28px;">
+        <div class="container">
+            <div class="breadBox breadcrumb_nav">
+                <!---->
+            </div>
+            <div class="InfoBoxbig" layout:fragment="InfoBoxbig" id="InfoBoxbig"></div>
+        </div>
+    </div>
+    <!--页脚 -->
+    <div th:replace="comm/fragments/footer2 :: footer">footer</div>
+</body>
+</html>

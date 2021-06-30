@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.enableets.edu.enable.cloud.exam.framework.dao.ExamLevelInfoDAO">
+
+  <select id="getExamInfo"  resultType="com.enableets.edu.enable.cloud.exam.framework.po.ExamLevelInfoPO" >
+	    select level_id as levelId,
+	           level_name as levelName,
+	           school_id as schoolId,
+	           grade_code as gradeCode,
+	           min_point as minPoint,
+	           max_point as maxPoint,
+	           sequence as sequence
+	    from    exam_level_info
+	    <where>
+          <if test="schoolId != null and schoolId != ''">
+            school_id=#{schoolId}
+          </if>
+          <if test="gradeCode != null and gradeCode != ''">
+            and grade_code=#{gradeCode}
+          </if>
+        </where>
+
+   </select>
+</mapper>

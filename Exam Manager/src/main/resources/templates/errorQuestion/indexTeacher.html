@@ -1,0 +1,125 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org/"  layout:decorator="comm/layout3">
+
+<head>
+    <meta charset="utf-8">
+    <title>报告分析</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script th:src="${_contextPath} + @{/custom/cloudexam/js/errorQuestion/errorQuestionIndex.js(v=${_v})}"></script>
+    <script type="text/javascript" th:src="${_contextPath} + @{/custom/cloudexam/js/ztree/ztree.js(v=${_v})}"></script>
+    <script type="text/javascript" th:src="${_contextPath} + @{/comm/plugins/jsTree/jstree.min.js(v=${_v})}"></script>
+    <script type="text/javascript" th:src="${_contextPath} + @{/comm/plugins/layer/layer.js(v=${_v})}" ></script>
+    <script type="text/javascript" th:src="${_contextPath} + @{/custom/cloudexam/js/paging/page.js(v=${_v})}"></script>
+    <script type="text/javascript" th:src="${_contextPath} + @{|/custom/cloudexam/js/paging/lang/${_locale}.js|(v=${_v})}"></script>
+    <link rel="stylesheet" type="text/css" th:href="${_contextPath} + @{/comm/plugins/jsTree/themes/default/font-awesome/css/font-awesome.min.css(v=${_v})}" />
+    <link rel="stylesheet" type="text/css" th:href="${_contextPath} + @{/comm/plugins/jsTree/themes/default/style.min.css(v=${_v})}" />
+    <link rel="stylesheet" type="text/css" th:href="${_contextPath} + @{/comm/plugins/jsTree/themes/default/components.min.css(v=${_v})}" />
+    <link rel="stylesheet" type="text/css" th:href="${_contextPath} + @{/custom/cloudexam/js/paging/page2.css}" />
+    <link rel="stylesheet" type="text/css" th:href="${_contextPath} + @{/comm/plugins/jsTree/themes/default/plugins.min.css(v=${_v})}" />
+    <script type="text/javascript" th:inline="javascript">
+        $(function(){
+            // 初始化错误题目数据
+            errorQuestionIndex.queryUrl = [[${_contextPath} + @{/error/question/getErrorQuestions}]];
+            errorQuestionIndex.countUrl = [[${_contextPath} + @{/error/question/getErrorQuestionCount}]];
+            errorQuestionIndex.teachGroups = [[${teachGroups}]];
+            KnowledgeTree.init([[${_contextPath}]]);
+            errorQuestionIndex.init();
+        });
+    </script>
+    <style>
+        #class-select{
+            width: 150px;
+            font-weight: normal;
+            margin-left: 10px;
+        }
+        .no-data{
+            margin: 30px auto;
+            font-size: 16px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+<div class="InfoBoxbig" layout:fragment="InfoBoxbig">
+    <div class="main">
+        <div class="mainleft">
+            <div class="tree-style">
+                <div _ngcontent-vku-c65="" class="typeAll">
+                    <div _ngcontent-vku-c65="" nz-element="" class="headtitleName"><span
+                            _ngcontent-vku-c65=""><b id = "sore" _ngcontent-vku-c65="" >
+											</b></span><a _ngcontent-vku-c65="" nz-tooltip=""
+                                                          class="glyphicon glyphicon-menu-right ng-star-inserted"></a>
+                        <!---->
+                        <!---->
+                        <!---->
+                    </div>
+                    <!---->
+                </div>
+                <div class="nodeBox">
+                    <nz-tree nzblocknode="" nzshowline=""
+                             class="ng-tns-c71-1 ant-select-tree ant-select-tree-show-line ant-select-tree-icon-hide ant-select-tree-block-node">
+                        <div role="tree" class="ng-tns-c71-1"><input class="ng-tns-c71-1"
+                                                                     style="width: 0px; height: 0px; display: flex; overflow: hidden; opacity: 0; border: 0px; padding: 0px; margin: 0px;">
+                        </div>
+                        <div class="ant-tree-list ng-tns-c71-1 ant-select-tree-list">
+                            <div class="ng-tns-c71-1">
+                                <!---->
+                                <div
+                                        class="ng-tns-c71-1 ant-select-tree-list-holder-inner ng-trigger ng-trigger-treeCollapseMotion ng-star-inserted">
+                                    <!---->
+
+                                    <div class="knowledge_tree">
+                                        <div id="knowledgeTree"></div>
+                                    </div>
+
+                                </div>
+                                <!---->
+                            </div>
+                        </div>
+                        <!---->
+                    </nz-tree>
+                    <!--<img th:src="${_contextPath} + @{/custom/package/ppr/css/paper/img/empty.png}"/>-->
+                    <p  id="notTree" class="ng-star-inserted"><img th:src="${_contextPath} + @{/custom/cloudexam/img/nodata.png}" alt=""></p>
+                    <!---->
+                    <nz-spin nzsimple="" nztip="Loading...">
+
+                    </nz-spin>
+                </div>
+                <!---->
+            </div>
+        </div>
+        <div class="mainright">
+            <div class="aminNav">
+                <div class="selectClassBox"><span class="className">班级</span>
+                    <select id="class-select">
+                        <option value="all">全部班级</option>
+                        <option th:each="teachGroup:${teachGroups}" th:value="${teachGroup.classId}" th:text="${teachGroup.className}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="stepNav">
+                <div class="stepNavTopBox">
+                    <div class="stepNavTop">
+                        <div class="titlesplit"></div>
+                        <span class="title">班级错题</span>
+                    </div>
+                </div>
+                <div class="stepList">
+                </div>
+                <div class="pageBox">
+                    <div class="page_box ng-star-inserted">
+                        <div id="pageInfo" class="page_box_tips col-xs-12 col-sm-3 col-md-3 col-lg-3">
+                        </div>
+                        <ul class="pageOne col-xs-12 col-sm-9 col-md-9 col-lg-9"  maxshowpageitem="5" pagelistcount="10" id="pageOne">
+                        </ul>
+                    </div>
+                    <!---->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
